@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://siebel.com/CustomUI" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://siebel.com/CustomUI">
+    <types>
+        <xsd:schema targetNamespace="http://otpbank.ru/Model/Types">
+            <xsd:simpleType name="IntegrationIdType">
+                <xsd:restriction base="xsd:string">
+                    <xsd:pattern value="[*]{0}|[0-9A-Fa-f]{48}"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="nonEmptyString">
+                <xsd:restriction base="xsd:string">
+                    <xsd:minLength value="1"/>
+                    <xsd:whiteSpace value="collapse"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="bankBICType">
+                <xsd:restriction base="xsd:string">
+                    <xsd:pattern value="\d{9}"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="bankINNType">
+                <xsd:restriction base="xsd:string">
+                    <xsd:pattern value="\d{9,15}"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="bankAccountType">
+                <xsd:restriction base="xsd:string">
+                    <xsd:pattern value="\d{20}"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="bankCardType">
+                <xsd:restriction base="xsd:string">
+                    <xsd:pattern value="\d{16,18}"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="PhoneType">
+                <xsd:annotation>
+                    <xsd:documentation>Тип номера телефона</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string">
+                    <xsd:pattern value="[+]7[0-9]{10}"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="BooleanType">
+                <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="Y">
+                        <xsd:annotation>
+                            <xsd:documentation>True</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="N">
+                        <xsd:annotation>
+                            <xsd:documentation>False</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:enumeration>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="CardTypeType">
+                <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="Дебетовая Карта"/>
+                    <xsd:enumeration value="Кредитная Карта"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="CurrencyType">
+                <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="RUR"/>
+                    <xsd:enumeration value="USD"/>
+                    <xsd:enumeration value="EUR"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:schema>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://otpbank.ru/ApprovalOpty">
+            <xs:complexType name="ApprovalOptyRequest">
+                <xs:sequence>
+                    <xs:element name="Environment_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Идентификатор среды ПО Кредитный Брокер</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="TT_Ext_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код торговой точки в ПО Кредитный Брокер</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Agent_Ext_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код агента, оформляющего кредит</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Chain_code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код Сети в справочнике Банка</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Opty_Id" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Идентификатор заявки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ApprovalOptyResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="1" name="Error_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код ошибки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Error_Message" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Текст ошибки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xsd:schema xmlns:ns="http://otpbank.ru/ApprovalOpty" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://siebel.com/CustomUI">
+            <xsd:element name="ApprovalOptyRequest" type="ns:ApprovalOptyRequest"/>
+            <xsd:element name="ApprovalOptyResponse" type="ns:ApprovalOptyResponse"/>
+        </xsd:schema>
+    </types>
+    <message name="ApprovalOptyRequest">
+        <part element="tns:ApprovalOptyRequest" name="ApprovalOptyRequest"/>
+    </message>
+    <message name="ApprovalOptyResponse">
+        <part element="tns:ApprovalOptyResponse" name="ApprovalOptyResponse"/>
+    </message>
+    <portType name="ApprovalOptyIsb">
+        <operation name="ApprovalOpty">
+            <input message="tns:ApprovalOptyRequest"/>
+            <output message="tns:ApprovalOptyResponse"/>
+        </operation>
+    </portType>
+    <binding name="ApprovalOptyIsb" type="tns:ApprovalOptyIsb">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="ApprovalOpty">
+            <soap:operation soapAction="document/http://siebel.com/CustomUI:ApprovalOpty"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="ApprovalOptyIsb">
+        <port binding="tns:ApprovalOptyIsb" name="ApprovalOptyIsb">
+            <soap:address location="http://pos-t.isb:80/services"/>
+        </port>
+    </service>
+</definitions>

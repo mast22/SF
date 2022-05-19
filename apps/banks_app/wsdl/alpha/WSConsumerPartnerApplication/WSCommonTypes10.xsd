@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:wsct="http://WSCommonTypes10.CS.ws.alfabank.ru" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://WSCommonTypes10.CS.ws.alfabank.ru">
+	<!-- ?????? -->
+	<xsd:complexType name="WSExtention">
+		<xsd:sequence>
+			<xsd:element name="name" type="xsd:string" minOccurs="1"/>
+			<xsd:element name="value" type="xsd:string" minOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- ?????? -->
+	<xsd:element name="WSTechnicalException">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="errorCode" type="xsd:string"/>
+				<xsd:element name="errorString" type="xsd:string"/>
+				<xsd:element name="errorTrace" type="xsd:string"/>
+				<xsd:element name="errorExt" type="wsct:WSExtention" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="WSCommonParms">
+		<xsd:sequence>
+			<xsd:element name="userID" type="wsct:WSTypeChar4" minOccurs="0"/>
+			<!-- userID for 'server' system, for EQ equal EQ user profile  -->
+			<xsd:element name="branchNumber" type="wsct:WSTypeChar4" minOccurs="0"/>
+			<xsd:element name="externalSystemCode" type="wsct:WSTypeChar10" nillable="false"/>
+			<!-- ID code for external client (for GBA = "GBA") -->
+			<xsd:element name="externalUserCode" type="wsct:WSTypeChar30" nillable="false"/>
+			<!-- code for client identification (uses only in log, may be or not eqval to userID) -->
+			<xsd:element name="ldapUser" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="ldapPassword" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="inCommonParmsExt" type="wsct:WSExtention" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- ?????? -->
+	<xsd:complexType name="WSCommonOutParms">
+		<xsd:sequence>
+			<xsd:element name="outCommonParmsExt" type="wsct:WSExtention" maxOccurs="unbounded"/>
+			<xsd:element name="dummy" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- ?????? -->
+	<xsd:simpleType name="WSTypeChar1">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar2">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar3">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="3"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar4">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="4"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar5">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="5"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar6">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="6"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar7">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="7"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar8">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="8"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar9">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="9"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar10">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="10"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar11">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="11"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar12">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="12"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar13">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="13"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar14">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="14"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar15">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="15"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar16">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="16"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar17">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="17"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar18">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="18"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar19">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="19"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar20">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="20"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar21">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="21"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar22">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="22"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar23">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="23"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar24">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="24"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar25">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="25"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar26">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="26"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar28">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="28"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar30">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="30"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar31">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="31"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar32">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="32"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar34">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="34"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar35">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="35"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar37">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="37"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar40">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="40"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar45">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="45"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar50">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="50"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar58">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="58"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar60">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="60"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar64">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="64"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar70">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="70"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar75">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="75"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar77">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="77"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar78">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="78"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar80">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="80"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar100">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="100"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar105">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="105"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar120">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="120"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar128">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="128"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar140">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="140"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar150">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="150"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar160">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="160"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar175">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="175"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar200">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="200"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar210">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="210"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar250">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="250"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar255">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="255"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar256">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="256"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar280">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="280"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar300">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="300"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar366">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="366"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar400">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="400"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar500">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="500"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar512">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="512"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar1024">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="1024"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar2048">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="2048"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar4096">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="4096"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeChar8192">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="8192"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeInt2">
+		<xsd:restriction base="xsd:short"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeInt4">
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeUInt1">
+		<xsd:restriction base="xsd:unsignedByte"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDecimal10">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="1"/>
+			<xsd:fractionDigits value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDecimal20">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="2"/>
+			<xsd:fractionDigits value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDecimal30">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="3"/>
+			<xsd:fractionDigits value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDecimal33">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="3"/>
+			<xsd:fractionDigits value="3"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDecimal40">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="4"/>
+			<xsd:fractionDigits value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDecimal50">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="5"/>
+			<xsd:fractionDigits value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDecimal60">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="6"/>
+			<xsd:fractionDigits value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDecimal70">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="7"/>
+			<xsd:fractionDigits value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDecimal74">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="7"/>
+			<xsd:fractionDigits value="4"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDecimal80">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="8"/>
+			<xsd:fractionDigits value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDecimal82">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="8"/>
+			<xsd:fractionDigits value="2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDecimal100">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="10"/>
+			<xsd:fractionDigits value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDecimal117">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="11"/>
+			<xsd:fractionDigits value="7"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDecimal122">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="12"/>
+			<xsd:fractionDigits value="2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDecimal137">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="13"/>
+			<xsd:fractionDigits value="7"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDecimal147">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="14"/>
+			<xsd:fractionDigits value="7"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDecimal150">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="15"/>
+			<xsd:fractionDigits value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDecimal152">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="15"/>
+			<xsd:fractionDigits value="2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDecimal159">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="15"/>
+			<xsd:fractionDigits value="9"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDecimal177">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="17"/>
+			<xsd:fractionDigits value="7"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDecimal180">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="18"/>
+			<xsd:fractionDigits value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDecimal182">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="18"/>
+			<xsd:fractionDigits value="2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDecimal183">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="18"/>
+			<xsd:fractionDigits value="3"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDecimal190">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="19"/>
+			<xsd:fractionDigits value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDecimal192">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="19"/>
+			<xsd:fractionDigits value="2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDecimal199">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="19"/>
+			<xsd:fractionDigits value="9"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDecimal200">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="20"/>
+			<xsd:fractionDigits value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDecimal202">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="20"/>
+			<xsd:fractionDigits value="2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDecimal205">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="20"/>
+			<xsd:fractionDigits value="5"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDecimal240">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="24"/>
+			<xsd:fractionDigits value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDate">
+		<xsd:restriction base="xsd:date">
+			<xsd:pattern value="[0-9]{4}-[0-9]{2}-[0-9]{2}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeTime8">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="6"/>
+			<xsd:pattern value="[0-9]{2}:[0-9]{2}:[0-9]{2}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeDateTime">
+		<xsd:restriction base="xsd:dateTime">
+			<xsd:pattern value="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WSTypeUID38">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="\{[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}\}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- EQ additional info -->
+	<xsd:complexType name="WSTypeAddInfo" abstract="true">
+		<xsd:sequence>
+			<xsd:element name="anm" type="wsct:WSTypeChar5"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="WSTypeAddInfoNumeric">
+		<xsd:complexContent>
+			<xsd:extension base="wsct:WSTypeAddInfo">
+				<xsd:sequence>
+					<xsd:element name="adt" type="wsct:WSTypeDecimal150"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="WSTypeAddInfoAlphanumeric">
+		<xsd:complexContent>
+			<xsd:extension base="wsct:WSTypeAddInfo">
+				<xsd:sequence>
+					<xsd:element name="adt" type="wsct:WSTypeChar210"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="WSTypeAddInfoCode">
+		<xsd:complexContent>
+			<xsd:extension base="wsct:WSTypeAddInfo">
+				<xsd:sequence>
+					<xsd:element name="adt" type="wsct:WSTypeChar10"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="WSTypeAddInfoDate">
+		<xsd:complexContent>
+			<xsd:extension base="wsct:WSTypeAddInfo">
+				<xsd:sequence>
+					<xsd:element name="adt" type="xsd:dateTime"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="WSTypeAddInfoExchangeRate">
+		<xsd:complexContent>
+			<xsd:extension base="wsct:WSTypeAddInfo">
+				<xsd:sequence>
+					<xsd:element name="adt" type="wsct:WSTypeDecimal159"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="WSTypeAddInfoInterestRate">
+		<xsd:complexContent>
+			<xsd:extension base="wsct:WSTypeAddInfo">
+				<xsd:sequence>
+					<xsd:element name="adt" type="wsct:WSTypeDecimal137"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="WSTypeAddInfoAmount">
+		<xsd:complexContent>
+			<xsd:extension base="wsct:WSTypeAddInfo">
+				<xsd:sequence>
+					<xsd:element name="adt" type="wsct:WSTypeDecimal150"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="WSTypeAddInfoList">
+		<xsd:sequence>
+			<xsd:element name="list" type="wsct:WSTypeAddInfo" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="WSTypeAddInfoParm">
+		<xsd:sequence>
+			<xsd:element name="info" type="wsct:WSTypeAddInfo"/>
+			<xsd:element name="code" type="wsct:WSTypeChar70"/>
+			<xsd:element name="desc" type="wsct:WSTypeChar70"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="WSTypeAddInfoParmList">
+		<xsd:sequence>
+			<xsd:element name="list" type="wsct:WSTypeAddInfoParm" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

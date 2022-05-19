@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2014 rel. 2 sp1 (x64) (http://www.altova.com) by CINIMEX-INFORMATICA (CINIMEX-INFORMATICA) -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsdLocal="http://www.siebel.com/xml/ApplicationInfoMQ" targetNamespace="http://www.siebel.com/xml/ApplicationInfoMQ" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:annotation>
+		<xsd:documentation>Copyright (C) 2001-2004 Siebel Systems, Inc. All
+			rights reserved. Siebel XSD Generation</xsd:documentation>
+	</xsd:annotation>
+	<xsd:element name="ApplicationInfoMQ" type="xsdLocal:ApplicationInfoMQ"/>
+	<xsd:complexType name="ApplicationInfoMQTopElmt">
+		<xsd:all>
+			<xsd:element name="ApplicationInfoMQ" type="xsdLocal:ApplicationInfoMQ" minOccurs="1" maxOccurs="1"/>
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="ApplicationInfoMQ">
+		<xsd:all>
+			<xsd:element name="Application" type="xsdLocal:Application" minOccurs="1" maxOccurs="1"/>
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="Application">
+		<xsd:all>
+			<xsd:element name="ApplicationIntId" nillable="false" minOccurs="1">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:minLength value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Stage" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Status" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="ErrorCode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="ErrorMessage" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="RequiredInfo" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="SignatureType" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="SESFlag" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="SESSchemaVersion" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="ClientValue" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="SaleTechnology" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="PossibilityToContinuingInDBOFlag" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="ApplicationLockFlag" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="CreditRate" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="InsureMonthPayment" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="NoInsureMonthPayment" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="TotalMonthPayment" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="TotalInsuranceAmount" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="CreditSumm" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="CreditPercent" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="InitPayment" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="CreditAmount" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="ProductName" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="CreditTerm" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="InsuranceType" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="ReminderCreditLineFlg" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="AgrNumCreditLine" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Contacts" type="xsdLocal:Contacts" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="CreditLines" type="xsdLocal:CreditLines" minOccurs="0" maxOccurs="1"/>
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="Contacts">
+		<xsd:sequence>
+			<xsd:element name="Contact" type="xsdLocal:Contact" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Contact">
+		<xsd:all>
+			<xsd:element name="ContactId" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="CreditLines">
+		<xsd:sequence>
+			<xsd:element name="CreditLine" type="xsdLocal:CreditLine" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="CreditLine">
+		<xsd:all>
+			<xsd:element name="NameProductCreditLine" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="AmountCreditLine" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+		</xsd:all>
+	</xsd:complexType>
+</xsd:schema>

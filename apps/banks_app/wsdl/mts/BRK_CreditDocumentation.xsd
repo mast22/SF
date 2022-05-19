@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2010 rel. 3 (http://www.altova.com) by MESMERiZE (MSM) -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mbrd="mbrd" targetNamespace="mbrd" id="mtsCreditDocumentation">
+	<!--Импорт базовых типов -->
+	<xsd:include schemaLocation="Include\MTS\mts_Types.xsd"/>
+	<!--Кредитная документация-->
+	<xsd:element name="responseMTS">
+		<xsd:complexType>
+			<xsd:all>
+				<!--Идентификатор заявки-->
+				<xsd:element name="mtsRequestId" type="xsd:string" nillable="false">
+					<xsd:annotation>
+						<xsd:documentation>Идентификатор заявки в ПО КБ</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<!--Тип сообщения-->
+				<xsd:element name="messageId" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>Уникальный идентификатор сообщения (GUID)</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="extRequestId" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>Идентификтор заявки системы в Банке</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="messageDateTime" type="xsd:dateTime">
+					<xsd:annotation>
+						<xsd:documentation>Дата время создания сообщения (ГГГГ-ММ-ДДTЧЧ:ММ:ССZ)</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="messageType" type="mbrd:messageType" fixed="CREDIT_DOCUMENTATION_BRK">
+					<xsd:annotation>
+						<xsd:documentation>Тип сообщения</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="SPName" type="mbrd:systemType">
+					<xsd:annotation>
+						<xsd:documentation>Код отправителя сообщения </xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="MsgReceiver" type="mbrd:systemType">
+					<xsd:annotation>
+						<xsd:documentation>Код получателя сообщения</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="ExtMsgType" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>Расширенный тип сообщения</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="issueSaleSource" type="xsd:string" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>Код канала выдачи </xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="fillInSaleSource" type="xsd:string" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>Код канала исполнения заявки </xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<!--ссылки на документы-->
+				<xsd:element name="decisionId" type="xsd:long">
+					<xsd:annotation>
+						<xsd:documentation>Id выбранного предложения</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="documents" type="mbrd:MTSPOSDocumentsDataType"/>
+				<!--Номер договора-->
+				<xsd:element name="agreementNum" type="xsd:string" minOccurs="0"/>
+				<!--Номер счета-->
+				<xsd:element name="accountNum" type="xsd:string" minOccurs="0"/>
+				<!--Комментарий-->
+				<xsd:element name="comment" type="mbrd:comment" minOccurs="0"/>
+				<xsd:element name="barCode" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:maxLength value="19"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="lastName" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:maxLength value="85"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="firstName" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:maxLength value="85"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="fatherName" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:maxLength value="85"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="FADecisions" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>Информация о дополнительных продуктах (FA-предложения Банка)</xsd:documentation>
+					</xsd:annotation>
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="FADecision">
+								<xsd:complexType>
+									<xsd:all>
+										<xsd:element name="productCode" nillable="false">
+											<xsd:annotation>
+												<xsd:documentation>Одобренный кредитный продукт - Код продукта в РТК</xsd:documentation>
+											</xsd:annotation>
+											<xsd:simpleType>
+												<xsd:restriction base="xsd:string"/>
+											</xsd:simpleType>
+										</xsd:element>
+										<xsd:element name="creditLimit" minOccurs="0">
+											<xsd:annotation>
+												<xsd:documentation>Одобренный лимит для кредитного продукта</xsd:documentation>
+											</xsd:annotation>
+											<xsd:simpleType>
+												<xsd:restriction base="xsd:decimal">
+													<xsd:totalDigits value="9"/>
+													<xsd:fractionDigits value="2"/>
+												</xsd:restriction>
+											</xsd:simpleType>
+										</xsd:element>
+										<xsd:element name="rate" minOccurs="0">
+											<xsd:annotation>
+												<xsd:documentation>Одобренная процентная ставка для кредитного продукта</xsd:documentation>
+											</xsd:annotation>
+											<xsd:simpleType>
+												<xsd:restriction base="xsd:decimal">
+													<xsd:totalDigits value="4"/>
+													<xsd:fractionDigits value="2"/>
+												</xsd:restriction>
+											</xsd:simpleType>
+										</xsd:element>
+										<xsd:element name="creditPeriod" minOccurs="0">
+											<xsd:annotation>
+												<xsd:documentation>Одобренный срок кредита для кредитного продукта</xsd:documentation>
+											</xsd:annotation>
+											<xsd:simpleType>
+												<xsd:restriction base="xsd:integer">
+													<xsd:maxInclusive value="99"/>
+												</xsd:restriction>
+											</xsd:simpleType>
+										</xsd:element>
+									</xsd:all>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="creditDecisions" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>Список кредитных предложений</xsd:documentation>
+					</xsd:annotation>
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="creditDecision" type="mbrd:creditDecision" maxOccurs="unbounded"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:all>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

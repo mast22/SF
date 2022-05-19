@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 rel. 2 (x64) (http://www.altova.com) by CINIMEX-INFORMATICA (CINIMEX-INFORMATICA) -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://WSConsumerPartnerSetStatusInOutParms10.IO.CS.ws.alfabank.ru" xmlns:wsct="http://WSCommonTypes10.CS.ws.alfabank.ru" targetNamespace="http://WSConsumerPartnerSetStatusInOutParms10.IO.CS.ws.alfabank.ru">
+	<xsd:import namespace="http://WSCommonTypes10.CS.ws.alfabank.ru" schemaLocation="../WSCommonTypes10.xsd"/>
+	<!-- Input parameters -->
+	<xsd:complexType name="WSConsumerPartnerSetStatusInParms">
+		<xsd:sequence>
+			<!-- Код внешней системы – источника заявки. -->
+			<xsd:element name="EXSTSYS" type="wsct:WSTypeChar40" minOccurs="1" maxOccurs="1"/>
+			<!-- Идентификатор заявки во внешней системе (идентификатор обращения в EQ) -->
+			<xsd:element name="RFE" type="wsct:WSTypeChar16" minOccurs="1" maxOccurs="1"/>
+			<!-- Идентификатор заявки во Flecs -->
+			<xsd:element name="APPID" type="wsct:WSTypeChar20" minOccurs="1" maxOccurs="1"/>
+			<!-- Одно из возможных значений локального справочника ExtDecisionCode. -->
+			<xsd:element name="STATUS" type="wsct:WSTypeChar40" minOccurs="1" maxOccurs="1"/>
+			<!-- Код детализации  причины  отказа по заявке. -->
+			<xsd:element name="REASON_CODE" type="wsct:WSTypeChar6" minOccurs="0" maxOccurs="1"/>
+			<!-- Внешний код агента (например, код агента в КБ) -->
+			<xsd:element name="AGENT_CODE_EXT" type="wsct:WSTypeChar50" minOccurs="0" maxOccurs="1"/>
+			<!-- Номер карты КМП -->
+			<xsd:element name="CMS_CARDNUMBER" type="wsct:WSTypeChar16" minOccurs="0" maxOccurs="1"/>
+			<!-- Дата окончания срока действия карты КМП -->
+			<xsd:element name="CMS_COMPLETIONDATE" type="wsct:WSTypeDate" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

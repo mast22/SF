@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2014 rel. 2 sp1 (x64) (http://www.altova.com) by CINIMEX-INFORMATICA (CINIMEX-INFORMATICA) -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsdLocal="http://www.siebel.com/xml/AtcBrokerCreatePOSCLPartApplicationMQRequest" targetNamespace="http://www.siebel.com/xml/AtcBrokerCreatePOSCLPartApplicationMQRequest" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:annotation>
+		<xsd:documentation>Copyright (C) 2001-2004 Siebel Systems, Inc. All rights reserved. Siebel XSD Generation</xsd:documentation>
+	</xsd:annotation>
+	<xsd:element name="CreatePOSCLPartMQRequest" type="xsdLocal:CreatePOSCLPartMQRequest"/>
+	<xsd:complexType name="CreatePOSCLPartMQRequestTopElmt">
+		<xsd:all>
+			<xsd:element name="CreatePOSCLPartMQRequest" type="xsdLocal:CreatePOSCLPartMQRequest" minOccurs="1" maxOccurs="1"/>
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="CreatePOSCLPartMQRequest">
+		<xsd:all>
+			<xsd:element name="BrokerCode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="ReleaseVsn" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Application" type="xsdLocal:Application" minOccurs="1" maxOccurs="1"/>
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="Application">
+		<xsd:all>
+			<xsd:element name="Type" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="Channel" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="PathCode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="TtCode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="ToCode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="TtRegionCode" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="TtAddress" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="AgentLastName" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="AgentFirstName" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="AgentMiddleName" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="AgentPassportNumber" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="AgentPassportSeria" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="BrokerId" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="BrokerAgentId" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="ProductCode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="Product2Code" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="TermCredit" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="AmountCredit" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="AnnualPayment" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="FirstPayment" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="InsuranceType" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="InsuranceForm" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="FullApplication" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="OptySource" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="AgrNumCreditLine" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="ListOfGoods" type="xsdLocal:ListOfGoods" minOccurs="1" maxOccurs="1"/>
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="ListOfGoods">
+		<xsd:sequence>
+			<xsd:element name="Goods" type="xsdLocal:Goods" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Goods">
+		<xsd:all>
+			<xsd:element name="Group" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="GoodCode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="Mark" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="Model" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="Quantity" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="Price" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+		</xsd:all>
+	</xsd:complexType>
+</xsd:schema>

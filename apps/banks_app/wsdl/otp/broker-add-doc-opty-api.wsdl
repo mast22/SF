@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://siebel.com/CustomUI" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://siebel.com/CustomUI">
+    <types>
+        <xs:schema targetNamespace="http://otpbank.ru/AddDocOpty">
+            <xs:complexType name="AddDocOptyRequest">
+                <xs:sequence>
+                    <xs:element name="Environment_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Идентификатор среды ПО Кредитный Брокер</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="TT_Ext_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код торговой точки в ПО Кредитный Брокер</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Agent_Ext_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код агента, оформляющего кредит</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Chain_code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код Сети в справочнике Банка</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Opty_Id" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Идентификатор заявки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="1" name="ListOfOpportunityAttachment">
+                        <xs:annotation>
+                            <xs:documentation>Перечень прикрепляемых документов</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element maxOccurs="unbounded" minOccurs="1" name="OpportunityAttachment">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element minOccurs="1" name="DocumentType" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>Тип файла прикрепляемого документа
+                                                    </xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element minOccurs="1" name="OpptyFileName" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>Название файла прикрепляемого документа
+                                                    </xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element minOccurs="1" name="OpptyFileExt" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>Расширение файла прикрепляемого документа
+                                                    </xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element minOccurs="1" name="OpptyFileBuffer" type="xs:base64Binary">
+                                                <xs:annotation>
+                                                    <xs:documentation>Содержимое файла прикрепляемого документа
+                                                    </xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="AddDocOptyResponse">
+                <xs:all>
+                    <xs:element minOccurs="1" name="Error_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код ошибки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Error_Message" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Текст ошибки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:all>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ns="http://otpbank.ru/AddDocOpty" elementFormDefault="qualified" targetNamespace="http://siebel.com/CustomUI">
+            <xs:element name="AddDocOptyRequest" type="ns:AddDocOptyRequest"/>
+            <xs:element name="AddDocOptyResponse" type="ns:AddDocOptyResponse"/>
+        </xs:schema>
+    </types>
+
+    <message name="AddDocOptyRequestMessage">
+        <part element="tns:AddDocOptyRequest" name="AddDocOptyRequest"/>
+    </message>
+    <message name="AddDocOptyResponseMessage">
+        <part element="tns:AddDocOptyResponse" name="AddDocOptyResponse"/>
+    </message>
+    <portType name="AddDocOptyPortType">
+        <operation name="AddDocOptyOperation">
+            <input message="tns:AddDocOptyRequestMessage"/>
+            <output message="tns:AddDocOptyResponseMessage"/>
+        </operation>
+    </portType>
+    <binding name="AddDocOptyBinding" type="tns:AddDocOptyPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="AddDocOptyOperation">
+            <soap:operation soapAction="document/http://siebel.com/CustomUI:AddDocOptyOperation"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="AddDocOptyService">
+        <port binding="tns:AddDocOptyBinding" name="AddDocOptyPort">
+            <soap:address location="http://pos-t.isb:80/services"/>
+        </port>
+    </service>
+</definitions>

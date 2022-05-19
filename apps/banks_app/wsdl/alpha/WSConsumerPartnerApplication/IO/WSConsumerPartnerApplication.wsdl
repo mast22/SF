@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	name="WSConsumerPartnerApplication10" targetNamespace="http://WSConsumerPartnerApplication10.IO.CS.ws.alfabank.ru"
+	xmlns:tns="http://WSConsumerPartnerApplication10.IO.CS.ws.alfabank.ru"
+	xmlns:wsio="http://WSConsumerPartnerApplicationInOutParms10.IO.CS.ws.alfabank.ru"
+	xmlns:wsct="http://WSCommonTypes10.CS.ws.alfabank.ru">
+
+	<!-- Description of types of IO parameters used by web-service -->
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://WSConsumerPartnerApplication10.IO.CS.ws.alfabank.ru">
+			<xsd:import namespace="http://WSCommonTypes10.CS.ws.alfabank.ru"
+				schemaLocation="../WSCommonTypes10.xsd" />
+			<xsd:import namespace="http://WSConsumerPartnerApplicationInOutParms10.IO.CS.ws.alfabank.ru"
+				schemaLocation="WSConsumerPartnerApplicationInOutParms.xsd" />
+
+			<!-- Method Add -->
+			<!-- Input parameters -->
+			<xsd:element name="WSConsumerPartnerApplicationAdd" type="tns:WSConsumerPartnerApplicationAdd" />
+			<xsd:complexType name="WSConsumerPartnerApplicationAdd">
+				<xsd:sequence>
+					<xsd:element name="inCommonParms" type="wsct:WSCommonParms" />
+					<xsd:element name="inParms" type="wsio:WSConsumerPartnerApplicationAddInParms" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- Output parameters -->
+			<xsd:element name="WSConsumerPartnerApplicationAddResponse"
+				type="tns:WSConsumerPartnerApplicationAddResponse" />
+			<xsd:complexType name="WSConsumerPartnerApplicationAddResponse">
+				<xsd:sequence>
+					<xsd:element name="response"
+						type="tns:WSConsumerPartnerApplicationAddResponseType" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="WSConsumerPartnerApplicationAddResponseType">
+				<xsd:sequence>
+					<xsd:element name="outCommonParms" type="wsct:WSCommonOutParms" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<!-- Method AddRequest -->
+			<!-- Input parameters -->
+			<xsd:element name="WSConsumerPartnerApplicationAddRequest"
+				type="tns:WSConsumerPartnerApplicationAddRequest" />
+			<xsd:complexType name="WSConsumerPartnerApplicationAddRequest">
+				<xsd:sequence>
+					<xsd:element name="inCommonParms" type="wsct:WSCommonParms" />
+					<xsd:element name="inParms"
+						type="wsio:WSConsumerPartnerApplicationAddRequestInParms" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- Output parameters -->
+			<xsd:element name="WSConsumerPartnerApplicationAddRequestResponse"
+				type="tns:WSConsumerPartnerApplicationAddRequestResponse" />
+			<xsd:complexType name="WSConsumerPartnerApplicationAddRequestResponse">
+				<xsd:sequence>
+					<xsd:element name="response"
+						type="tns:WSConsumerPartnerApplicationAddRequestResponseType" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="WSConsumerPartnerApplicationAddRequestResponseType">
+				<xsd:sequence>
+					<xsd:element name="outCommonParms" type="wsct:WSCommonOutParms" />
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+
+	<!-- Web service messages -->
+	<wsdl:message name="msgWSConsumerPartnerApplicationAdd">
+		<wsdl:part element="tns:WSConsumerPartnerApplicationAdd"
+			name="WSConsumerPartnerApplicationAdd" />
+	</wsdl:message>
+	<wsdl:message name="msgWSConsumerPartnerApplicationAddResponse">
+		<wsdl:part element="tns:WSConsumerPartnerApplicationAddResponse"
+			name="WSConsumerPartnerApplicationAddResponse" />
+	</wsdl:message>
+	<wsdl:message name="msgWSConsumerPartnerApplicationAddRequest">
+		<wsdl:part element="tns:WSConsumerPartnerApplicationAddRequest"
+			name="WSConsumerPartnerApplicationAddRequest" />
+	</wsdl:message>
+	<wsdl:message name="msgWSConsumerPartnerApplicationAddRequestResponse">
+		<wsdl:part element="tns:WSConsumerPartnerApplicationAddRequestResponse"
+			name="WSConsumerPartnerApplicationAddRequestResponse" />
+	</wsdl:message>
+
+	<wsdl:message name="msgWSTechnicalException">
+		<wsdl:part element="wsct:WSTechnicalException" name="WSTechnicalException" />
+	</wsdl:message>
+
+	<!-- Web service Port -->
+	<wsdl:portType name="WSConsumerPartnerApplicationPortType">
+		<wsdl:operation name="WSConsumerPartnerApplicationAdd">
+			<wsdl:input message="tns:msgWSConsumerPartnerApplicationAdd" />
+			<wsdl:output message="tns:msgWSConsumerPartnerApplicationAddResponse" />
+			<wsdl:fault message="tns:msgWSTechnicalException" name="WSTechnicalException" />
+		</wsdl:operation>
+		<wsdl:operation name="WSConsumerPartnerApplicationAddRequest">
+			<wsdl:input message="tns:msgWSConsumerPartnerApplicationAddRequest" />
+			<wsdl:output message="tns:msgWSConsumerPartnerApplicationAddRequestResponse" />
+			<wsdl:fault message="tns:msgWSTechnicalException" name="WSTechnicalException" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<!-- Web service binding -->
+	<wsdl:binding name="WSConsumerPartnerApplicationBinding"
+		type="tns:WSConsumerPartnerApplicationPortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="WSConsumerPartnerApplicationAdd">
+			<soap:operation soapAction="/CS/IO/WSConsumerPartnerApplication#Add" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="WSTechnicalException">
+				<soap:fault name="WSTechnicalException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="WSConsumerPartnerApplicationAddRequest">
+			<soap:operation soapAction="/CS/IO/WSConsumerPartnerApplication#AddRequest" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="WSTechnicalException">
+				<soap:fault name="WSTechnicalException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<!-- Web-service -->
+	<wsdl:service name="WSConsumerPartnerApplication">
+		<wsdl:port binding="tns:WSConsumerPartnerApplicationBinding"
+			name="WSConsumerPartnerApplicationPort">
+			<soap:address
+				location="http://localhost:9080/WSConsumerPartnerApplication" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

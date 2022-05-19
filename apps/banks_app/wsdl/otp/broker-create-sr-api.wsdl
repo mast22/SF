@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://siebel.com/CustomUI" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://siebel.com/CustomUI">
+    <types>
+        <xsd:schema xmlns:t="http://otpbank.ru/Model/Types" targetNamespace="http://otpbank.ru/Model/Types">
+            <xsd:simpleType name="IntegrationIdType">
+                <xsd:restriction base="xsd:string">
+                    <xsd:pattern value="[*]{0}|[0-9A-Fa-f]{48}"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="nonEmptyString">
+                <xsd:restriction base="xsd:string">
+                    <xsd:minLength value="1"/>
+                    <xsd:whiteSpace value="collapse"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="PhoneType">
+                <xsd:annotation>
+                    <xsd:documentation>Тип номера телефона. Формат +7XXXXXXXXXX</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string">
+                    <xsd:pattern value="[+]7[0-9]{10}"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="SiebelBooleanType">
+                <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="Y">
+                        <xsd:annotation>
+                            <xsd:documentation>True</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="N">
+                        <xsd:annotation>
+                            <xsd:documentation>False</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:enumeration>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="SiebelDate">
+                <xsd:annotation>
+                    <xsd:documentation>Дата формата ММ/ДД/ГГГГ</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string">
+                    <xsd:pattern value="[0-9]{2}/[0-9]{2}/[0-9]{4}"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:schema>
+        <xs:schema xmlns:t="http://otpbank.ru/Model/Types" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://otpbank.ru/CreateSR">
+            <xs:complexType name="CreateSRRequest">
+                <xs:sequence>
+                    <xs:element name="Environment_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Идентификатор среды ПО Кредитный Брокер</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="TT_Ext_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код торговой точки в ПО Кредитный Брокер</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Agent_Ext_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код агента, оформляющего кредит</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Chain_code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код Сети в справочнике Банка</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Agreement_Number" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Номер договора</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Client_Last_Name" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Фамилия клиента</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Client_First_Name" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Имя клиента</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Client_Middle_Name" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Отчество клиента</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Birth_Date" type="t:SiebelDate">
+                        <xs:annotation>
+                            <xs:documentation>Дата рождения</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ID_Doc_Type" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Тип идентифицирующего документа</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ID_Doc_Series" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Серия идентифицирующего документа</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ID_Doc_Number" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Номер идентифицирующего документа</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CreateSRResponse">
+                <xs:sequence>
+                    <xs:element name="SR_Number" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Идентификатор созданого запроса в Siebel</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ListOfGoods">
+                        <xs:annotation>
+                            <xs:documentation>Блок программы услуг</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element maxOccurs="unbounded" name="Good">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element name="Category" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>Категория товара</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element name="Name" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>Наименование товара</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element name="Marka" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>Марка товара</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element name="Model" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>Модель товара</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element name="Price" type="xs:decimal">
+                                                <xs:annotation>
+                                                    <xs:documentation>Цена товара</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element name="Quantity" type="xs:decimal">
+                                                <xs:annotation>
+                                                    <xs:documentation>Кол-во штук товара</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element name="Good_Id" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>Идентификатор заявки</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="1" name="Error_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код ошибки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Error_Message" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Текст ошибки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xsd:schema xmlns:ns="http://otpbank.ru/CreateSR" elementFormDefault="qualified" targetNamespace="http://siebel.com/CustomUI">
+            <xsd:element name="CreateSRRequest" type="ns:CreateSRRequest"/>
+            <xsd:element name="CreateSRResponse" type="ns:CreateSRResponse"/>
+        </xsd:schema>
+    </types>
+    <message name="CreateSRRequest">
+        <part element="tns:CreateSRRequest" name="CreateSRRequest"/>
+    </message>
+    <message name="CreateSRResponse">
+        <part element="tns:CreateSRResponse" name="CreateSRResponse"/>
+    </message>
+    <portType name="CreateSrIsb">
+        <operation name="CreateSR_spcv2">
+            <input message="tns:CreateSRRequest"/>
+            <output message="tns:CreateSRResponse"/>
+        </operation>
+    </portType>
+    <binding name="CreateSrIsb" type="tns:CreateSrIsb">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="CreateSR_spcv2">
+            <soap:operation soapAction="document/http://siebel.com/CustomUI:CreateSR_spcv2"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="CreateSrIsb">
+        <port binding="tns:CreateSrIsb" name="CreateSrIsb">
+            <soap:address location="http://pos-t.isb:80/services"/>
+        </port>
+    </service>
+</definitions>

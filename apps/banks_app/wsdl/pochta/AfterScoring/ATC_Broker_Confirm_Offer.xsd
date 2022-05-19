@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified"
+    elementFormDefault="qualified"
+    targetNamespace="http://www.siebel.com/xml/ATC%20Broker%20Confirm%20Offer"
+    xmlns:xsdLocal1="http://www.siebel.com/xml/ATC%20Broker%20Confirm%20Offer">
+    <xsd:annotation>
+        <xsd:documentation>Copyright (C) 2001-2004 Siebel Systems, Inc. All rights reserved. Siebel
+            XSD Generation</xsd:documentation>
+    </xsd:annotation>
+    <xsd:element name="ListOfBrokerConfirmOffer" type="xsdLocal1:ListOfBrokerConfirmOffer"/>
+    <xsd:complexType name="ListOfBrokerConfirmOfferTopElmt">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ListOfBrokerConfirmOffer"
+                type="xsdLocal1:ListOfBrokerConfirmOffer"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ListOfBrokerConfirmOffer">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="ApplicationPos"
+                type="xsdLocal1:ApplicationPos"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ApplicationPos">
+        <xsd:all>
+			<xsd:element name="FIOEmpAgentAgreement" maxOccurs="1" minOccurs="0" type="xsd:string"/>
+			<xsd:element name="PlannedDateDocSign" maxOccurs="1" minOccurs="0" type="xsd:string"/>
+			<xsd:element name="SignatureType" maxOccurs="1" minOccurs="0" type="xsd:string"/>
+			<xsd:element name="SaleTechnology" maxOccurs="1" minOccurs="0" type="xsd:string"/>
+			<xsd:element name="ApplicationId" maxOccurs="1" minOccurs="1" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ListOfOpportunityAttachment" type="xsdLocal1:ListOfOpportunityAttachment"/>
+        </xsd:all>
+        <xsd:attribute name="Operation" type="xsd:string"/>
+    </xsd:complexType>
+    <xsd:complexType name="ListOfOpportunityAttachment">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="OpportunityAttachment"
+                type="xsdLocal1:OpportunityAttachment"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="OpportunityAttachment">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="Id" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="OpptyFileExt" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="OpptyFileName" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ATCOptyConId" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="OpptyFileSrcType" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="OpptyFileBuffer" type="xsd:base64Binary"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="DocType" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ATCDoneFlag" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ATCNewPhotoFlag" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ATCPhotoCheckedFlag" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ATCPhotoKeyId" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ErrorMessage" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ATCQuality" type="xsd:string"/>
+        </xsd:sequence>
+        <xsd:attribute name="Operation" type="xsd:string"/>
+    </xsd:complexType>
+</xsd:schema>

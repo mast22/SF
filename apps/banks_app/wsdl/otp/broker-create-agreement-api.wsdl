@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://siebel.com/CustomUI" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://siebel.com/CustomUI">
+    <types>
+        <xsd:schema xmlns:t="http://otpbank.ru/Model/Types" targetNamespace="http://otpbank.ru/Model/Types">
+            <xsd:simpleType name="IntegrationIdType">
+                <xsd:restriction base="xsd:string">
+                    <xsd:pattern value="[*]{0}|[0-9A-Fa-f]{48}"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="nonEmptyString">
+                <xsd:restriction base="xsd:string">
+                    <xsd:minLength value="1"/>
+                    <xsd:whiteSpace value="collapse"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="PhoneType">
+                <xsd:annotation>
+                    <xsd:documentation>Тип номера телефона. Формат +7XXXXXXXXXX</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string">
+                    <xsd:pattern value="[+]7[0-9]{10}"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="SiebelBooleanType">
+                <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="Y">
+                        <xsd:annotation>
+                            <xsd:documentation>True</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="N">
+                        <xsd:annotation>
+                            <xsd:documentation>False</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:enumeration>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="SiebelDate">
+                <xsd:annotation>
+                    <xsd:documentation>Дата формата ММ/ДД/ГГГГ</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string">
+                    <xsd:pattern value="[0-9]{2}/[0-9]{2}/[0-9]{4}"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:schema>
+        <xs:schema xmlns:t="http://otpbank.ru/Model/Types" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://otpbank.ru/CreateAgreement">
+            <xs:complexType name="CreateAgreementRequest">
+                <xs:sequence>
+                    <xs:element name="Environment_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Идентификатор среды ПО Кредитный Брокер</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="TT_Ext_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код торговой точки в ПО Кредитный Брокер</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Agent_Ext_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код агента, оформляющего кредит</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Chain_code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код Сети в справочнике Банка</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Opty_Id" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Идентификатор заявки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Paper_Tech" type="t:SiebelBooleanType">
+                        <xs:annotation>
+                            <xs:documentation>Устанавливает на заявке признак бумажной технологии</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Delivery_Date" type="t:SiebelDate">
+                        <xs:annotation>
+                            <xs:documentation>Дата доставки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CreateAgreementResponse">
+                <xs:sequence>
+                    <xs:element name="Agreement_Number" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Номер договора</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="MFO_Agreement_Flg" type="t:SiebelBooleanType">
+                        <xs:annotation>
+                            <xs:documentation>Признак МФО</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Account_Number" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Номер счета</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Product_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код продукта в Siebel по заявке</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Credit_Amount" type="xs:decimal">
+                        <xs:annotation>
+                            <xs:documentation>Сумма кредита</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="First_Payment" type="xs:decimal">
+                        <xs:annotation>
+                            <xs:documentation>Первоначальный взнос</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Credit_Period" type="xs:decimal">
+                        <xs:annotation>
+                            <xs:documentation>Срок кредита</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="PSK" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>ПСК</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="ListOfDocumentations">
+                        <xs:annotation>
+                            <xs:documentation>Перечень печатных форм по договорной документации</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element maxOccurs="unbounded" minOccurs="0" name="Document">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element minOccurs="0" name="Document_Type" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>Название печатной формы</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element minOccurs="0" name="Document_Ext" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>Расширение печатной формы</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element minOccurs="0" name="Document_Buffer" type="xs:base64Binary">
+                                                <xs:annotation>
+                                                    <xs:documentation>Document_Buffer BIP документ</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="1" name="Error_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код ошибки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Error_Message" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Текст ошибки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xsd:schema xmlns:ns="http://otpbank.ru/CreateAgreement" elementFormDefault="qualified" targetNamespace="http://siebel.com/CustomUI">
+            <xsd:element name="CreateAgreementRequest" type="ns:CreateAgreementRequest"/>
+            <xsd:element name="CreateAgreementResponse" type="ns:CreateAgreementResponse"/>
+        </xsd:schema>
+    </types>
+    <message name="CreateAgreementRequest">
+        <part element="tns:CreateAgreementRequest" name="CreateAgreementRequest"/>
+    </message>
+    <message name="CreateAgreementResponse">
+        <part element="tns:CreateAgreementResponse" name="CreateAgreementResponse"/>
+    </message>
+    <portType name="CreateAgreement">
+        <operation name="CreateAgreement">
+            <input message="tns:CreateAgreementRequest"/>
+            <output message="tns:CreateAgreementResponse"/>
+        </operation>
+    </portType>
+    <binding name="CreateAgreement" type="tns:CreateAgreement">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="CreateAgreement">
+            <soap:operation soapAction="document/http://siebel.com/CustomUI:CreateAgreement"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="CreateAgreement">
+        <port binding="tns:CreateAgreement" name="CreateAgreement">
+            <soap:address location="http://pos-t.isb:80/services"/>
+        </port>
+    </service>
+</definitions>

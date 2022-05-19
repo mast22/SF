@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2014 rel. 2 sp1 (x64) (http://www.altova.com) by CINIMEX-INFORMATICA (CINIMEX-INFORMATICA) -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:xsdLocal1="http://www.siebel.com/xml/ATC%20Opportunity%20POS" xmlns:xsdLocal2="http://www.siebel.com/xml/ATC%20Broker%20Confirm%20Offer" xmlns:xsdLocal3="http://www.siebel.com/xml/ATC%20Broker%20Application%20PF" xmlns:xsdLocal4="http://www.siebel.com/xml/sendRetRep" xmlns:xsdLocal5="http://www.siebel.com/xml/sendSigned" xmlns:ns1="http://siebel.com/CustomUI" targetNamespace="http://siebel.com/CustomUI" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:import namespace="http://www.siebel.com/xml/ATC%20Opportunity%20POS" schemaLocation="ATC_Opportunity_POS.xsd"/>
+	<xsd:import namespace="http://www.siebel.com/xml/ATC%20Broker%20Confirm%20Offer" schemaLocation="ATC_Broker_Confirm_Offer.xsd"/>
+	<xsd:import namespace="http://www.siebel.com/xml/ATC%20Broker%20Application%20PF" schemaLocation="ATC_Broker_Application_PF.xsd"/>
+	<xsd:import namespace="http://www.siebel.com/xml/sendRetRep" schemaLocation="sendRetRep.xsd"/>
+	<xsd:import namespace="http://www.siebel.com/xml/sendSigned" schemaLocation="sendSigned.xsd"/>
+	<xsd:element name="checkScoreResult_Input">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="BrokerCode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+				<xsd:element name="ReleaseVsn" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				<xsd:element name="ApplicationId" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="checkScoreResult_Output">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="CreditAmount" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				<xsd:element name="CreditPercent" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				<xsd:element name="CreditRate" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				<xsd:element name="CreditSumm" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				<xsd:element name="CreditTerm" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				<xsd:element name="DecisionCode" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				<xsd:element name="ErrorCode" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				<xsd:element name="ErrorMessage" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				<xsd:element name="InitPayment" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				<xsd:element name="InsureMonthPayment" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				<xsd:element name="InteractionId" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				<xsd:element name="NoInsureMonthPayment" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				<xsd:element name="TotalMonthPayment" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				<xsd:element name="TotalInsuranceAmount" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				<xsd:element name="ProductName" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				<xsd:element name="DecisionComment" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				<xsd:element name="InsuranceType" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				<xsd:element name="SESFlag" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				<xsd:element name="SignatureType" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			</xsd:all>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="scoreOptyWeb_Input">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="BrokerCode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+				<xsd:element name="ReleaseVsn" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="xsdLocal1:createApplication"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="scoreOptyWeb_Output">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="ErrorCode" type="xsd:string"/>
+				<xsd:element name="ErrorMessage" type="xsd:string"/>
+				<xsd:element name="sApplicationId" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="scoreOpty_Input">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="BrokerCode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+				<xsd:element name="ReleaseVsn" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="xsdLocal1:ListOfApplicationPos"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="scoreOpty_Output">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="ApplicationId" type="xsd:string"/>
+				<xsd:element name="ErrorCode" type="xsd:string"/>
+				<xsd:element name="ErrorMessage" type="xsd:string"/>
+				<xsd:element name="InteractionId" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="confirmOffer_Input">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="BrokerCode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+				<xsd:element name="ReleaseVsn" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="xsdLocal2:ListOfBrokerConfirmOffer"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="confirmOffer_Output">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="ErrorCode" type="xsd:string"/>
+				<xsd:element name="ErrorMessage" type="xsd:string"/>
+				<xsd:element name="InteractionId" type="xsd:string"/>
+				<xsd:element name="SESSchemaVersion" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				<xsd:element name="SignatureType" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="docsSigned_Input">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="BrokerCode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+				<xsd:element name="ReleaseVsn" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="xsdLocal5:ListOfBrokerConfirmOffer"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="docsSigned_Output">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="ErrorCode" type="xsd:string"/>
+				<xsd:element name="ErrorMessage" type="xsd:string"/>
+				<xsd:element name="InteractionId" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="offerCancelled_Input">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="BrokerCode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+				<xsd:element name="ReleaseVsn" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				<xsd:element name="ApplicationId" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="offerCancelled_Output">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="ErrorCode" type="xsd:string"/>
+				<xsd:element name="ErrorMessage" type="xsd:string"/>
+				<xsd:element name="InteractionId" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="checkStatus_Input">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="BrokerCode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+				<xsd:element name="ReleaseVsn" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				<xsd:element name="ApplicationId" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="checkStatus_Output">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="CheckResult" type="xsd:string"/>
+				<xsd:element name="ErrorCode" type="xsd:string"/>
+				<xsd:element name="ErrorMessage" type="xsd:string"/>
+				<xsd:element name="InteractionId" type="xsd:string"/>
+				<xsd:element ref="xsdLocal1:ListOfScanError"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="getDocs_Input">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="BrokerCode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+				<xsd:element name="ReleaseVsn" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				<xsd:element name="ApplicationId" type="xsd:string"/>
+				<xsd:element name="SaleTechnology" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="getDocs_Output">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="AccountNum" type="xsd:string"/>
+				<xsd:element name="AgreementNum" type="xsd:string"/>
+				<xsd:element name="CheckResult" type="xsd:string"/>
+				<xsd:element name="ErrorCode" type="xsd:string"/>
+				<xsd:element name="ErrorMessage" type="xsd:string"/>
+				<xsd:element name="InteractionId" type="xsd:string"/>
+				<xsd:element ref="xsdLocal3:ListOfBrokerApplicationPf"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="approveSRRetRep_Input">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="BrokerCode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+				<xsd:element name="ReleaseVsn" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="xsdLocal4:approveSRRetRep"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="approveSRRetRep_Output">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Error_spcCode" type="xsd:string"/>
+				<xsd:element name="Error_spcMessage" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="createSRRetRep_Input">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="BrokerCode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+				<xsd:element name="ReleaseVsn" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				<xsd:element name="createSRRetRep" type="xsdLocal4:createSRRetRep"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="createSRRetRep_Output">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Error_spcCode" type="xsd:string"/>
+				<xsd:element name="Error_spcMessage" type="xsd:string"/>
+				<xsd:element ref="xsdLocal4:createSRRetRepOutput"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="getSES_Input">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="BrokerCode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+				<xsd:element name="ReleaseVsn" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				<xsd:element name="ApplicationId" type="xsd:string"/>
+				<xsd:element name="PlannedDateDocSign" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="getSES_Output">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="ApplicationId" type="xsd:string"/>
+				<xsd:element name="ErrorCode" type="xsd:string"/>
+				<xsd:element name="ErrorMessage" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

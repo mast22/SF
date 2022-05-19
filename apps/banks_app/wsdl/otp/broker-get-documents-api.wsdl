@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://siebel.com/CustomUI" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://siebel.com/CustomUI">
+    <types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://otpbank.ru/GetDocuments">
+            <xs:complexType name="GetDocumentsRequest">
+                <xs:sequence>
+                    <xs:element name="Environment_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Идентификатор среды ПО Кредитный Брокер</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="TT_Ext_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код торговой точки в ПО Кредитный Брокер</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Agent_Ext_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код агента, оформляющего кредит</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Chain_code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код Сети в справочнике Банка</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Opty_Id" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Идентификатор заявки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="GetDocumentsResponse">
+                <xs:sequence>
+                    <xs:element name="ListOfDocumentations">
+                        <xs:annotation>
+                            <xs:documentation>Перечень печатных форм по договорной документации</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element maxOccurs="unbounded" name="Document">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element name="Document_Type" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>Название печатной формы</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element name="Document_Ext" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>Расширение печатной формы</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element name="Document_Buffer" type="xs:base64Binary">
+                                                <xs:annotation>
+                                                    <xs:documentation>Document_Buffer BIP документ</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element name="Creditor_Type" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>Тип кредитора</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="1" name="Error_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код ошибки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Error_Message" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Текст ошибки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xsd:schema xmlns:ns="http://otpbank.ru/GetDocuments" elementFormDefault="qualified" targetNamespace="http://siebel.com/CustomUI">
+            <xsd:element name="GetDocumentsRequest" type="ns:GetDocumentsRequest"/>
+            <xsd:element name="GetDocumentsResponse" type="ns:GetDocumentsResponse"/>
+        </xsd:schema>
+    </types>
+    <message name="GetDocumentsRequest">
+        <part element="tns:GetDocumentsRequest" name="GetDocumentsRequest"/>
+    </message>
+    <message name="GetDocumentsResponse">
+        <part element="tns:GetDocumentsResponse" name="GetDocumentsResponse"/>
+    </message>
+    <portType name="GetDocumentsIsb">
+        <operation name="GetDocuments">
+            <input message="tns:GetDocumentsRequest"/>
+            <output message="tns:GetDocumentsResponse"/>
+        </operation>
+    </portType>
+    <binding name="GetDocumentsIsb" type="tns:GetDocumentsIsb">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="GetDocuments">
+            <soap:operation soapAction="document/http://siebel.com/CustomUI:GetDocuments"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="GetDocumentsIsb">
+        <port binding="tns:GetDocumentsIsb" name="GetDocumentsIsb">
+            <soap:address location="http://pos-t.isb:80/services"/>
+        </port>
+    </service>
+</definitions>

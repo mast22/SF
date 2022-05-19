@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://siebel.com/CustomUI" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://siebel.com/CustomUI">
+    <types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://otpbank.ru/AuthorizeAgreement">
+            <xs:complexType name="AuthorizeAgreementRequest">
+                <xs:sequence>
+                    <xs:element name="Environment_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Идентификатор среды ПО Кредитный Брокер</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="TT_Ext_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код торговой точки в ПО Кредитный Брокер</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Agent_Ext_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код агента, оформляющего кредит</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Chain_code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код Сети в справочнике Банка</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Opty_Id" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Идентификатор заявки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Customer_Estimate" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Визуальная оценка</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="AuthorizeAgreementResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="Agreement_Number" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Номер договора</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Authorization_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Признак МФО</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Agreement_Status" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Номер счета</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Credit_Amount" type="xs:decimal">
+                        <xs:annotation>
+                            <xs:documentation>Сумма кредита</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Goods_Price" type="xs:decimal">
+                        <xs:annotation>
+                            <xs:documentation>Первоначальный взнос</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="1" name="Error_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код ошибки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Error_Message" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Текст ошибки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xsd:schema xmlns:ns="http://otpbank.ru/AuthorizeAgreement" elementFormDefault="qualified" targetNamespace="http://siebel.com/CustomUI">
+
+            <xsd:element name="AuthorizeAgreementRequest" type="ns:AuthorizeAgreementRequest"/>
+            <xsd:element name="AuthorizeAgreementResponse" type="ns:AuthorizeAgreementResponse"/>
+        </xsd:schema>
+    </types>
+    <message name="AuthorizeAgreementRequest">
+        <part element="tns:AuthorizeAgreementRequest" name="AuthorizeAgreementRequest"/>
+    </message>
+    <message name="AuthorizeAgreementResponse">
+        <part element="tns:AuthorizeAgreementResponse" name="AuthorizeAgreementResponse"/>
+    </message>
+    <portType name="AuthorizeAgreement">
+        <operation name="AuthorizeAgreement">
+            <input message="tns:AuthorizeAgreementRequest"/>
+            <output message="tns:AuthorizeAgreementResponse"/>
+        </operation>
+    </portType>
+    <binding name="AuthorizeAgreement" type="tns:AuthorizeAgreement">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="AuthorizeAgreement">
+            <soap:operation soapAction="document/http://siebel.com/CustomUI:AuthorizeAgreement"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="AuthorizeAgreement">
+        <port binding="tns:AuthorizeAgreement" name="AuthorizeAgreement">
+            <soap:address location="http://pos-t.isb:80/services"/>
+        </port>
+    </service>
+</definitions>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	name="WSConsumerPartnerSetStatus10" targetNamespace="http://WSConsumerPartnerSetStatus10.IO.CS.ws.alfabank.ru"
+	xmlns:tns="http://WSConsumerPartnerSetStatus10.IO.CS.ws.alfabank.ru"
+	xmlns:wsio="http://WSConsumerPartnerSetStatusInOutParms10.IO.CS.ws.alfabank.ru"
+	xmlns:wsct="http://WSCommonTypes10.CS.ws.alfabank.ru">
+
+	<!-- Description of types of IO parameters used by web-service -->
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://WSConsumerPartnerSetStatus10.IO.CS.ws.alfabank.ru">
+			<xsd:import namespace="http://WSCommonTypes10.CS.ws.alfabank.ru"
+				schemaLocation="../WSCommonTypes10.xsd" />
+			<xsd:import namespace="http://WSConsumerPartnerSetStatusInOutParms10.IO.CS.ws.alfabank.ru"
+				schemaLocation="WSConsumerPartnerSetStatusInOutParms.xsd" />
+
+			<!-- Method Add -->
+			<!-- Input parameters -->
+			<xsd:element name="WSConsumerPartnerSetStatus" type="tns:WSConsumerPartnerSetStatus" />
+			<xsd:complexType name="WSConsumerPartnerSetStatus">
+				<xsd:sequence>
+					<xsd:element name="inCommonParms" type="wsct:WSCommonParms" />
+					<xsd:element name="inParms" type="wsio:WSConsumerPartnerSetStatusInParms" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- Output parameters -->
+			<xsd:element name="WSConsumerPartnerSetStatusResponse"
+				type="tns:WSConsumerPartnerSetStatusResponse" />
+			<xsd:complexType name="WSConsumerPartnerSetStatusResponse">
+				<xsd:sequence>
+					<xsd:element name="response"
+						type="tns:WSConsumerPartnerSetStatusResponseType" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="WSConsumerPartnerSetStatusResponseType">
+				<xsd:sequence>
+					<xsd:element name="outCommonParms" type="wsct:WSCommonOutParms" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			
+		</xsd:schema>
+	</wsdl:types>
+
+	<!-- Web service messages -->
+	<wsdl:message name="msgWSConsumerPartnerSetStatus">
+		<wsdl:part element="tns:WSConsumerPartnerSetStatus"
+			name="WSConsumerPartnerSetStatus" />
+	</wsdl:message>
+	<wsdl:message name="msgWSConsumerPartnerSetStatusResponse">
+		<wsdl:part element="tns:WSConsumerPartnerSetStatusResponse"
+			name="WSConsumerPartnerSetStatusResponse" />
+	</wsdl:message>
+
+
+	<wsdl:message name="msgWSTechnicalException">
+		<wsdl:part element="wsct:WSTechnicalException" name="WSTechnicalException" />
+	</wsdl:message>
+
+	<!-- Web service Port -->
+	<wsdl:portType name="WSConsumerPartnerSetStatusPortType">
+		<wsdl:operation name="WSConsumerPartnerSetStatus">
+			<wsdl:input message="tns:msgWSConsumerPartnerSetStatus" />
+			<wsdl:output message="tns:msgWSConsumerPartnerSetStatusResponse" />
+			<wsdl:fault message="tns:msgWSTechnicalException" name="WSTechnicalException" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<!-- Web service binding -->
+	<wsdl:binding name="WSConsumerPartnerSetStatusBinding"
+		type="tns:WSConsumerPartnerSetStatusPortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="WSConsumerPartnerSetStatus">
+			<soap:operation soapAction="/CS/IO/WSConsumerPartnerSetStatus#SetStatus" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="WSTechnicalException">
+				<soap:fault name="WSTechnicalException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<!-- Web-service -->
+	<wsdl:service name="WSConsumerPartnerSetStatus">
+		<wsdl:port binding="tns:WSConsumerPartnerSetStatusBinding"
+			name="WSConsumerPartnerSetStatusPort">
+			<soap:address
+				location="http://localhost:7080/WSConsumerPartnerSetStatus" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

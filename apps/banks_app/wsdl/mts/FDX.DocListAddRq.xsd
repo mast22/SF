@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2010 rel. 3 (http://www.altova.com) by MESMERiZE (MSM) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="FDX.xsd"/>
+	<xs:element name="FDX">
+		<xs:annotation>
+			<xs:documentation>DocListAddRq</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="ServerInfo">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="RqUID"/>
+							<xs:element ref="MsgUID"/>
+							<xs:element ref="ServerDt"/>
+							<xs:element ref="SPName"/>
+							<xs:element ref="MsgReceiver"/>
+							<xs:element name="MsgType" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>DocListAddRq</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="BankSvcRq">
+					<xs:annotation>
+						<xs:documentation>Данные запроса</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="RequestInfo">
+								<xs:annotation>
+									<xs:documentation>Данные по заявке</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element name="RequestId" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>Идентификатор заявки в Зибель</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element ref="CustId" minOccurs="0"/>
+										<xs:element ref="AgreemtNum" minOccurs="0"/>
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="CustInfo" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="PersonInfo">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element ref="PersonName"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="DocList">
+								<xs:annotation>
+									<xs:documentation>Список файлов</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="DocRec" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element ref="OrigName"/>
+													<xs:element name="DocTypeName" type="xs:string">
+														<xs:annotation>
+															<xs:documentation>Название документа</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DocNum" type="xs:positiveInteger" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Номер документа</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:choice>
+														<xs:element name="Data" type="xs:base64Binary">
+															<xs:annotation>
+																<xs:documentation>Бинарные данные файла в формате base64</xs:documentation>
+															</xs:annotation>
+														</xs:element>
+														<xs:element ref="Link"/>
+													</xs:choice>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Parms">
+								<xs:annotation>
+									<xs:documentation>Список параметров выдаваемого продукта для отображения на WEB форме при электронном подписании кредитной документации</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="Parm" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

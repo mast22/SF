@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://siebel.com/CustomUI" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://siebel.com/CustomUI">
+    <types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://otpbank.ru/RejectOpty">
+            <xs:complexType name="RejectOptyRequest">
+                <xs:sequence>
+                    <xs:element name="Environment_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Идентификатор среды ПО Кредитный Брокер</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Opty_Id" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Идентификатор заявки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Archive_Reason" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Причина отказа от кредита (отмены заявки)</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="RejectOptyResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="1" name="Error_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код ошибки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Error_Message" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Текст ошибки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xsd:schema xmlns:ns="http://otpbank.ru/RejectOpty" elementFormDefault="qualified" targetNamespace="http://siebel.com/CustomUI">
+            <xsd:element name="RejectOptyRequest" type="ns:RejectOptyRequest"/>
+            <xsd:element name="RejectOptyResponse" type="ns:RejectOptyResponse"/>
+        </xsd:schema>
+    </types>
+    <message name="RejectOptyRequest">
+        <part element="tns:RejectOptyRequest" name="RejectOptyRequest"/>
+    </message>
+    <message name="RejectOptyResponse">
+        <part element="tns:RejectOptyResponse" name="RejectOptyResponse"/>
+    </message>
+    <portType name="Cancel">
+        <operation name="Cancel">
+            <input message="tns:RejectOptyRequest"/>
+            <output message="tns:RejectOptyResponse"/>
+        </operation>
+    </portType>
+    <binding name="Cancel" type="tns:Cancel">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="Cancel">
+            <soap:operation soapAction="document/http://siebel.com/CustomUI:Cancel"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="RejectOpty">
+        <port binding="tns:Cancel" name="Cancel">
+            <soap:address location="http://pos-t.isb:80/services"/>
+        </port>
+    </service>
+</definitions>

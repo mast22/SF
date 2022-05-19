@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://siebel.com/CustomUI"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:xsdLocal1="http://www.siebel.com/xml/AtcBrokerCreatePOSCLPartApplicationMQRequest"
+	xmlns:xsdLocal2="http://www.siebel.com/xml/ApplicationInfoMQ"
+	name="CreatePOSCLPart"
+	targetNamespace="http://siebel.com/CustomUI">
+
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import
+				namespace="http://www.siebel.com/xml/AtcBrokerCreatePOSCLPartApplicationMQRequest"
+				schemaLocation="CreatePOSCLPartMQRequest.xsd">
+			</xsd:import>
+			<xsd:import
+				namespace="http://www.siebel.com/xml/ApplicationInfoMQ"
+				schemaLocation="ApplicationInfoMQ.xsd">
+			</xsd:import>
+		</xsd:schema>
+	</wsdl:types>
+
+	<wsdl:message name="CreatePOSCLPart_Input">
+		<wsdl:part
+			element="xsdLocal1:CreatePOSCLPartMQRequest"
+			name="CreatePOSCLPart_Input" />
+	</wsdl:message>
+	<wsdl:message name="CreatePOSCLPart_Output">
+		<wsdl:part element="xsdLocal2:ApplicationInfoMQ"
+			name="CreatePOSCLPart_Output" />
+	</wsdl:message>
+
+	<wsdl:portType name="CreatePOSCLPart">
+		<wsdl:operation name="CreatePOSCLPart">
+			<wsdl:input message="tns:CreatePOSCLPart_Input" />
+			<wsdl:output message="tns:CreatePOSCLPart_Output" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="CreatePOSCLPartSOAP"
+		type="tns:CreatePOSCLPart">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="CreatePOSCLPart">
+			<soap:operation
+				soapAction="http://siebel.com/CustomUI/CreatePOSCLPart" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="CreatePOSCLPart">
+		<wsdl:port binding="tns:CreatePOSCLPartSOAP"
+			name="CreatePOSCLPartSOAP">
+			<soap:address location="http://172.18.18.20/" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

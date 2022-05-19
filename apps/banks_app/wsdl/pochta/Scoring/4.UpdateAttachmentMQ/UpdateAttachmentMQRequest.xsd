@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsdLocal="http://www.siebel.com/xml/ATC%20Broker%20Update%20Attachment%20MQ%20Request" targetNamespace="http://www.siebel.com/xml/ATC%20Broker%20Update%20Attachment%20MQ%20Request" attributeFormDefault="unqualified" elementFormDefault="qualified">
+  <xsd:annotation>
+    <xsd:documentation>Copyright (C) 2001-2004 Siebel Systems, Inc. All rights reserved. Siebel XSD Generation</xsd:documentation>
+  </xsd:annotation>
+  <xsd:element name="Application" type="xsdLocal:Application"/>
+  <xsd:complexType name="ApplicationTopElmt">
+    <xsd:all>
+      <xsd:element name="Application" type="xsdLocal:Application" minOccurs="1" maxOccurs="1"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="Application">
+    <xsd:all>
+      <xsd:element name="BrokerCode" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+      <xsd:element name="ReleaseVsn" type="xsd:string" maxOccurs="1" minOccurs="0"/>
+      <xsd:element name="ApplicationIntId" minOccurs="1" nillable="false">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="FIOCourier" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CourierIDCard" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SaleTechnology" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ListOfContacts" type="xsdLocal:ListOfContacts" minOccurs="0" maxOccurs="1"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="ListOfContacts">
+    <xsd:sequence>
+      <xsd:element name="Contact" type="xsdLocal:Contact" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Contact">
+    <xsd:all>
+      <xsd:element name="ContactId" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="ListOfAttachments" type="xsdLocal:ListOfAttachments" minOccurs="0" maxOccurs="1"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="ListOfAttachments">
+    <xsd:sequence>
+      <xsd:element name="Attachment" type="xsdLocal:Attachment" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Attachment">
+    <xsd:all>
+      <xsd:element name="OpptyFile" type="xsd:base64Binary" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="OpptyFileType" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="OpptyFileName" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="OpptyFileExt" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </xsd:all>
+  </xsd:complexType>
+</xsd:schema>

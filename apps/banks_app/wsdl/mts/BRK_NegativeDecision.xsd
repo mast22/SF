@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2010 rel. 3 (http://www.altova.com) by MESMERiZE (MSM) -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mbrd="mbrd" targetNamespace="mbrd" id="mtsNegativeDecisionClient">
+	<!--Импорт базовых типов -->
+	<xsd:include schemaLocation="Include\MTS\mts_Types.xsd"/>
+	<!--Таймаут по заявке на стороне ПО КБ-->
+	<xsd:element name="requestMTS">
+		<xsd:complexType>
+			<xsd:all>
+				<!--Идентификатор заявки-->
+				<xsd:element name="mtsRequestId" type="xsd:string" nillable="false">
+					<xsd:annotation>
+						<xsd:documentation>Идентификатор заявки в ПО КБ</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<!--Тип сообщения-->
+				<xsd:element name="messageId" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>Уникальный идентификатор сообщения (GUID)</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="messageType" type="mbrd:messageType" fixed="NEGATIVE_DECISION_BRK">
+					<xsd:annotation>
+						<xsd:documentation>Тип сообщения</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<!--Дата отказа-->
+				<xsd:element name="messageDateTime" type="xsd:dateTime">
+					<xsd:annotation>
+						<xsd:documentation>Дата время создания сообщения (ГГГГ-ММ-ДДTЧЧ:ММ:ССZ)</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="SPName" type="mbrd:systemType">
+					<xsd:annotation>
+						<xsd:documentation>Код отправителя сообщения </xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="MsgReceiver" type="mbrd:systemType">
+					<xsd:annotation>
+						<xsd:documentation>Код получателя сообщения</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="refuseDate" type="xsd:date"/>
+				<!--Комментарий-->
+				<xsd:element name="comment" type="mbrd:comment" minOccurs="0"/>
+				<xsd:element name="ServerInfo" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="MsgType" type="mbrd:messageType" fixed="NEGATIVE_DECISION_BRK"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:all>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

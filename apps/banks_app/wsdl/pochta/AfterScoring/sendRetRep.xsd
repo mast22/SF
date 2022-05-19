@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema elementFormDefault="qualified" attributeFormDefault="unqualified"
+ xmlns:xsdLocal1="http://www.siebel.com/xml/sendRetRep"
+ targetNamespace="http://www.siebel.com/xml/sendRetRep" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:annotation>
+		<xsd:documentation>Copyright (C) 2001-2004 Siebel Systems, Inc. All rights reserved. Siebel XSD
+   Generation</xsd:documentation>
+	</xsd:annotation>
+	<xsd:element name="approveSRRetRep" type="xsdLocal1:approveSRRetRep"/>
+	<xsd:complexType name="approveSRRetRepTopElmt">
+		<xsd:sequence>
+			<xsd:element name="approveSRRetRep" maxOccurs="1" minOccurs="1" type="xsdLocal1:approveSRRetRep"
+   />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="approveSRRetRep">
+		<xsd:sequence>
+			<xsd:element name="ServiceRequest" maxOccurs="unbounded" minOccurs="0"
+    type="xsdLocal1:ServiceRequest"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ServiceRequest">
+		<xsd:sequence>
+			<xsd:element name="ServiceRequestNumber" maxOccurs="1" minOccurs="0" type="xsd:string"/>
+			<xsd:element name="ServiceRequestAttachment" maxOccurs="unbounded" minOccurs="0"
+    type="xsdLocal1:ServiceRequestAttachment"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ServiceRequestAttachment">
+		<xsd:sequence>
+			<xsd:element name="SRId" maxOccurs="1" minOccurs="0" type="xsd:string"/>
+			<xsd:element name="FileExt" maxOccurs="1" minOccurs="0" type="xsd:string"/>
+			<xsd:element name="FileName" maxOccurs="1" minOccurs="1" type="xsd:string"/>
+			<xsd:element name="FileType" maxOccurs="1" minOccurs="0" type="xsd:string"/>
+			<xsd:element name="FileBuffer" maxOccurs="1" minOccurs="0" type="xsd:base64Binary"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="createSRRetRep" type="xsdLocal1:createSRRetRep"/>
+	<xsd:complexType name="createSRRetRepTopElmt">
+		<xsd:sequence>
+			<xsd:element name="createSRRetRep" maxOccurs="1" minOccurs="1" type="xsdLocal1:createSRRetRep"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="createSRRetRep">
+		<xsd:sequence>
+			<xsd:element name="ServiceRequestIn" maxOccurs="unbounded" minOccurs="0"
+    type="xsdLocal1:ServiceRequestIn"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ServiceRequestIn">
+		<xsd:sequence>
+			<xsd:element name="ClientId" maxOccurs="1" minOccurs="0" type="xsd:string"/>
+			<xsd:element name="AgreementNumber" maxOccurs="1" minOccurs="0" type="xsd:string"/>
+			<xsd:element name="Issue" maxOccurs="1" minOccurs="0" type="xsd:string"/>
+			<xsd:element name="SRNumber" maxOccurs="1" minOccurs="0" type="xsd:string"/>
+			<xsd:element name="Status" maxOccurs="1" minOccurs="0" type="xsd:string"/>
+			<xsd:element name="SubIssue" maxOccurs="1" minOccurs="0" type="xsd:string"/>
+			<xsd:element name="Type" maxOccurs="1" minOccurs="0" type="xsd:string"/>
+			<xsd:element name="LoanAmount" maxOccurs="1" minOccurs="0" type="xsd:string"/>
+			<xsd:element name="ListOfServiceRequestGoodsIn" maxOccurs="1" minOccurs="0"
+    type="xsdLocal1:ListOfServiceRequestGoodsIn"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ListOfServiceRequestGoodsIn">
+		<xsd:sequence>
+			<xsd:element name="ServiceRequestGoodsIn" maxOccurs="unbounded" minOccurs="0"
+    type="xsdLocal1:ServiceRequestGoodsIn"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ServiceRequestGoodsIn">
+		<xsd:sequence>
+			<xsd:element name="Id" maxOccurs="1" minOccurs="0" type="xsd:string"/>
+			<xsd:element name="Code" maxOccurs="1" minOccurs="0" type="xsd:string"/>
+			<xsd:element name="Group" maxOccurs="1" minOccurs="0" type="xsd:string"/>
+			<xsd:element name="Mark" maxOccurs="1" minOccurs="0" type="xsd:string"/>
+			<xsd:element name="Model" maxOccurs="1" minOccurs="0" type="xsd:string"/>
+			<xsd:element name="Name" maxOccurs="1" minOccurs="0" type="xsd:string"/>
+			<xsd:element name="Price" maxOccurs="1" minOccurs="1" type="xsd:string"/>
+			<xsd:element name="Quantity" maxOccurs="1" minOccurs="1" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="createSRRetRepOutput">
+		<xsd:sequence>
+			<xsd:element name="ServiceRequestOut" maxOccurs="unbounded" minOccurs="0"
+    type="xsdLocal1:ServiceRequestOut"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="createSRRetRepOutput" type="xsdLocal1:createSRRetRepOutput"/>
+	<xsd:complexType name="createSRRetRepOutputTopElmt">
+		<xsd:sequence>
+			<xsd:element name="createSRRetRepOutput" maxOccurs="1" minOccurs="1"
+    type="xsdLocal1:createSRRetRepOutput"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ServiceRequestOut">
+		<xsd:sequence>
+			<xsd:element name="ServiceRequestNumber" maxOccurs="1" minOccurs="0" type="xsd:string"/>
+			<xsd:element name="ServiceRequestPrintFormOut" maxOccurs="unbounded" minOccurs="0"
+    type="xsdLocal1:ServiceRequestPrintFormOut"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ServiceRequestPrintFormOut">
+		<xsd:sequence>
+			<xsd:element name="FileParentId" maxOccurs="1" minOccurs="1" type="xsd:string"/>
+			<xsd:element name="FileExt" maxOccurs="1" minOccurs="0" type="xsd:string"/>
+			<xsd:element name="FileName" maxOccurs="1" minOccurs="1" type="xsd:string"/>
+			<xsd:element name="FileBuffer" maxOccurs="1" minOccurs="0" type="xsd:base64Binary"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

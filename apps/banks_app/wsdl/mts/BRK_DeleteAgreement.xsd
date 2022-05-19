@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2010 rel. 3 (http://www.altova.com) by MESMERiZE (MSM) -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mbrd="mbrd" targetNamespace="mbrd" id="ClientsList_Request">
+	<!-- Импорт базовых типов -->
+	<xsd:include schemaLocation="Include\systemDictionaries.xsd"/>
+	<xsd:include schemaLocation="Include\MTS\mts_Types.xsd"/>
+	<xsd:element name="requestMTS">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="mtsRequestId" type="xsd:string" nillable="false">
+					<xsd:annotation>
+						<xsd:documentation>Идентификатор заявки в ПО КБ</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="messageId" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>Уникальный идентификатор сообщения (GUID)</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="messageType" type="mbrd:messageType" fixed="DELETE_AGREEMENT_BRK">
+					<xsd:annotation>
+						<xsd:documentation>Тип сообщения</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="messageDateTime" type="xsd:dateTime">
+					<xsd:annotation>
+						<xsd:documentation>Дата время создания сообщения (ГГГГ-ММ-ДДTЧЧ:ММ:ССZ)</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="SPName" type="mbrd:systemType">
+					<xsd:annotation>
+						<xsd:documentation>Код отправителя сообщения </xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="MsgReceiver" type="mbrd:systemType">
+					<xsd:annotation>
+						<xsd:documentation>Код получателя сообщения</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="ServerInfo" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="MsgType" type="xsd:string" fixed="DELETE_AGREEMENT_BRK">
+								<xsd:annotation>
+									<xsd:documentation>Тип сообщения</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="requestData">
+					<xsd:complexType>
+						<xsd:all>
+							<xsd:element name="family">
+								<xsd:annotation>
+									<xsd:documentation>Фамилия клиента</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="Name">
+								<xsd:annotation>
+									<xsd:documentation>Имя клиента</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="fatherName" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Отчество клиента</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="agreementNum">
+								<xsd:annotation>
+									<xsd:documentation>Номер договора</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="reason" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Причина отмены договора</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="franchise_code">
+								<xsd:annotation>
+									<xsd:documentation>Код торговой организации</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="mts_pos_code" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Код торговой точки организации</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="mts_pos_reg_code" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Код макро-региона в котором расположена торговая точка </xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="mts_pos_address" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Адрес точки продажи кредита</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="kladr_reg_code" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>КЛАДР код региона, в котором расположена торговая точка</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="userCode">
+								<xsd:annotation>
+									<xsd:documentation>Код агента, оформившего заявку</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="userFIO" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>ФИО агента, оформившего заявку</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:all>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="comment" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

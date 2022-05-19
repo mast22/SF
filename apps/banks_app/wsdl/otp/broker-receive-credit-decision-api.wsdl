@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://siebel.com/CustomUI" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://siebel.com/CustomUI">
+    <types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://otpbank.ru/ReceiveCreditDecision">
+            <xs:complexType name="ReceiveCreditDecisionRequest">
+                <xs:sequence>
+                    <xs:element name="environmentCode" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Идентификатор среды ПО Кредитный Брокер</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="reference" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Идентификатор заявки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="decision" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Результат скоринга</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="product" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код продукта в Siebel по заявке</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="amount" type="xs:decimal">
+                        <xs:annotation>
+                            <xs:documentation>Одобренная сумма кредита</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="downPayment" type="xs:decimal">
+                        <xs:annotation>
+                            <xs:documentation>Первоначальный взнос</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="creditTerm" type="xs:decimal">
+                        <xs:annotation>
+                            <xs:documentation>Срок кредита</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="referenceKB" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Идентификатор заявки в ПО Кредитный Брокер, если имеется
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="source" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Идентификатор банка-партнёра в ПО Кредитный Брокер</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="monthlypaymentamount" type="xs:decimal">
+                        <xs:annotation>
+                            <xs:documentation>Ежемесяный платеж</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="requestForm" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Запрос анкеты</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="requestFormComment" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Передача недостающих параметров</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="CreditAmount" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Сумма кредита на товар</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="FullAgentServicesAmount" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Общая стоимость агентских услуг.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="AgentServicesAmount" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Стоимость агентских услуг.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="limitCartOfGoods" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Лимит для корзины товаров</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="SMSBankAmount" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Стоимость sms-банк</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="NeedNoConsent" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Актуальность Соглашения ЭП</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ReceiveCreditDecisionResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="1" name="errorCode" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код ошибки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="errorMessage" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Текст ошибки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xsd:schema xmlns:ns="http://otpbank.ru/ReceiveCreditDecision" elementFormDefault="qualified" targetNamespace="http://siebel.com/CustomUI">
+            <xsd:element name="ReceiveCreditDecisionRequest" type="ns:ReceiveCreditDecisionRequest"/>
+            <xsd:element name="ReceiveCreditDecisionResponse" type="ns:ReceiveCreditDecisionResponse"/>
+        </xsd:schema>
+    </types>
+    <message name="ReceiveCreditDecisionRequest">
+        <part element="tns:ReceiveCreditDecisionRequest" name="ReceiveCreditDecisionRequest"/>
+    </message>
+    <message name="ReceiveCreditDecisionResponse">
+        <part element="tns:ReceiveCreditDecisionResponse" name="ReceiveCreditDecisionResponse"/>
+    </message>
+    <portType name="CreditDecisionPort">
+        <operation name="receiveCreditDecision">
+            <input message="tns:ReceiveCreditDecisionRequest"/>
+            <output message="tns:ReceiveCreditDecisionResponse"/>
+        </operation>
+    </portType>
+    <binding name="CreditDecisionPort" type="tns:CreditDecisionPort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="receiveCreditDecision">
+            <soap:operation soapAction="test"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="CreditDecision">
+        <port binding="tns:CreditDecisionPort" name="CreditDecisionPort">
+            <soap:address location="http://pos-t.isb:80/services"/>
+        </port>
+    </service>
+</definitions>

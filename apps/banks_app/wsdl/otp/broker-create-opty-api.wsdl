@@ -1,0 +1,1172 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://siebel.com/CustomUI" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://siebel.com/CustomUI">
+    <types>
+        <xsd:schema xmlns:t="http://otpbank.ru/Model/Types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://otpbank.ru/Model/Types">
+            <xsd:simpleType name="IntegrationIdType">
+                <xsd:restriction base="xsd:string">
+                    <xsd:pattern value="[*]{0}|[0-9A-Fa-f]{48}"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="nonEmptyString">
+                <xsd:restriction base="xsd:string">
+                    <xsd:minLength value="1"/>
+                    <xsd:whiteSpace value="collapse"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="PhoneType">
+                <xsd:annotation>
+                    <xsd:documentation>Тип номера телефона. Формат +7XXXXXXXXXX</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string">
+                    <xsd:pattern value="[+]7[0-9]{10}"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="SiebelBooleanType">
+                <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="Y">
+                        <xsd:annotation>
+                            <xsd:documentation>True</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="N">
+                        <xsd:annotation>
+                            <xsd:documentation>False</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:enumeration>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="SiebelDate">
+                <xsd:annotation>
+                    <xsd:documentation>Дата формата ММ/ДД/ГГГГ</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string">
+                    <xsd:pattern value="[0-9]{2}/[0-9]{2}/[0-9]{4}"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:schema>
+        <xs:schema xmlns:t="http://otpbank.ru/Model/Types" targetNamespace="http://otpbank.ru/CreateOpty">
+            <xs:complexType name="CreateOptyRequest">
+                <xs:sequence>
+                    <xs:element name="Environment_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Идентификатор среды ПО Кредитный Брокер</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="TT_Ext_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код торговой точки в ПО Кредитный Брокер</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Agent_Ext_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код агента, оформляющего кредит</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Chain_code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код Сети в справочнике Банка</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Tech_Type" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Технология заявки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Opty_Type" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Тип анкеты</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Opty_Id" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Идентификатор заявки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Scoring_Cart_Goods" type="t:SiebelBooleanType">
+                        <xs:annotation>
+                            <xs:documentation>Скоринг корзины товаров</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Requested_Limit" type="xs:decimal">
+                        <xs:annotation>
+                            <xs:documentation>Запрошенный лимит для корзины товаров</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Paperless_Denial_Flg" type="t:SiebelBooleanType">
+                        <xs:annotation>
+                            <xs:documentation>Флаг отказа от Paperless</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Client_Last_Name" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Фамилия клиента</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Client_First_Name" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Имя клиента</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Client_Middle_Name" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Отчество клиента</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Birth_Date" type="t:SiebelDate">
+                        <xs:annotation>
+                            <xs:documentation>Дата рождения</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ID_Doc_Type" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Тип идентифицирующего документа</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ID_Doc_Series" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Серия идентифицирующего документа</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ID_Doc_Number" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Номер идентифицирующего документа</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="ID_Doc_Unit_Name" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Кем выдан</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="ID_Doc_Unit_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код подразделения, выдавшего паспорт</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="ID_Doc_Issue_Date" type="t:SiebelDate">
+                        <xs:annotation>
+                            <xs:documentation>Когда выдан</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Citizenship" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Гражданство</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Education" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Образование клиента</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Sex" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Пол клиента</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Not_Resident" type="t:SiebelBooleanType">
+                        <xs:annotation>
+                            <xs:documentation>Признак Нерезидент</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Code_Word" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Кодовое слово</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Place_of_Birth" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Место рождения клиента</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Country_of_Birth" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Страна рождения клиента</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Worker_flg" type="t:SiebelBooleanType">
+                        <xs:annotation>
+                            <xs:documentation>Признак - социальный статус клиента "Рабочий"</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Student_flg" type="t:SiebelBooleanType">
+                        <xs:annotation>
+                            <xs:documentation>Признак - социальный статус клиента "Студент"</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Retiree_flg" type="t:SiebelBooleanType">
+                        <xs:annotation>
+                            <xs:documentation>Признак - социальный статус клиента "Пенсионер"</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Marital_Status" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Семейное положение</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Partner_FIO" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>ФИО супруга</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Number_of_children" type="xs:decimal">
+                        <xs:annotation>
+                            <xs:documentation>Кол-во детей</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Number_of_dependents" type="xs:decimal">
+                        <xs:annotation>
+                            <xs:documentation>Кол-во иждивенцев</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Partner_Worker_flg" type="t:SiebelBooleanType">
+                        <xs:annotation>
+                            <xs:documentation>Признак Рабочий социального статуса супруга</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Partner_Student_flg" type="t:SiebelBooleanType">
+                        <xs:annotation>
+                            <xs:documentation>Признак Студент социального статуса супруга</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Partner_Retiree_flg" type="t:SiebelBooleanType">
+                        <xs:annotation>
+                            <xs:documentation>Признак Пенсионер социального статуса супруга</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Personal_Income" type="xs:decimal">
+                        <xs:annotation>
+                            <xs:documentation>Персональный доход (руб.)</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Family_Income" type="xs:decimal">
+                        <xs:annotation>
+                            <xs:documentation>Доход семьи (руб.)</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Mobile_Phone" type="t:PhoneType">
+                        <xs:annotation>
+                            <xs:documentation>Телефон мобильный</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Fact_Living_Phone" type="t:PhoneType">
+                        <xs:annotation>
+                            <xs:documentation>Телефон проживания</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Registry_Phone" type="t:PhoneType">
+                        <xs:annotation>
+                            <xs:documentation>Телефон регистрации</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Mobile2_Phone" type="t:PhoneType">
+                        <xs:annotation>
+                            <xs:documentation>Мобильный телефон 2</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Contact_Person_FIO" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>ФИО контактного лица</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Contact_Person_Phone" type="t:PhoneType">
+                        <xs:annotation>
+                            <xs:documentation>Телефон контактного лица</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Client_Email" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>E-mail клиента</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Registry_Address_KLADR_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код адреса регистрации по справочнику КЛАДР</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Registry_Address_Zipcode" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Индекс адреса регистрации</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Registry_Address_Country" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Страна адреса регистрации</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Registry_Address_Region" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Область адреса регистрации</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Registry_Address_Section" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Район адреса регистрации</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Registry_Address_City_Type" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Тип населенного пункта адреса регистрации</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Registry_Address_City" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Название населенного пункта адреса регистрации</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Registry_Address_Town_Type" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Тип города регистрации</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Registry_Address_Town" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Город регистрации</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Registry_Address_Street_Type" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Тип улицы адреса регистрации</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Registry_Address_Street" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Название улицы адреса регистрации</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Registry_Address_House" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Номер дома адреса регистрации</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Registry_Address_Doorway" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Корпус/строение адреса регистрации</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Registry_Address_Apartment" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Квартира адреса регистрации</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Registry_Address_Date" type="t:SiebelDate">
+                        <xs:annotation>
+                            <xs:documentation>Дата регистрации</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Fact_Registry_Address_Flg" type="t:SiebelBooleanType">
+                        <xs:annotation>
+                            <xs:documentation>Флаг "Адрес проживания совпадает с адресом регистрации"</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Fact_Address_KLADR_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код адреса проживания по справочнику КЛАДР</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Fact_Address_Zipcode" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Индекс адреса проживания</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Fact_Address_Country" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Страна адреса проживания</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Fact_Address_Region" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Область адреса проживания</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Fact_Address_Section" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Район адреса проживания</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Fact_Address_City_Type" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Тип населенного пункта адреса проживания</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Fact_Address_City" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Населенный пункт адреса проживания</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Fact_Address_Town_Type" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Тип города адреса проживания</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Fact_Address_Town" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Город адреса проживания</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Fact_Address_Street_Type" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Тип улицы адреса проживания</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Fact_Address_Street" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Название улицы адреса проживания</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Fact_Address_House" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Номер дома адреса проживания</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Fact_Address_Doorway" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Корпус/строение адреса проживания</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Fact_Address_Apartment" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Квартира адреса проживания</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Fact_Address_Period" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Срок проживания в месяцах</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Post_Address_Flag" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Флаг "Адрес почтовый совпадает с адресом регистрации или с адресом
+                                проживания"
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Work_Category" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Категория места работы</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Organization_Name" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Название организации места работы</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Organization_INN" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>ИНН работодателя клиента</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Form_of_Ownership" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Форма собственности организации</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Industry" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Отрасль организации</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Area_of_Activities" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Направление деятельности клиента</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Foreign_Participation" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Тип организации по отношению к иностранному капиталу</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Position" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Должность</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Period_of_work" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Стаж в компании в месяцах</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Work_phone1" type="t:PhoneType">
+                        <xs:annotation>
+                            <xs:documentation>Рабочий телефон 1</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Work_phone2" type="t:PhoneType">
+                        <xs:annotation>
+                            <xs:documentation>Рабочий телефон 2</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Work_phone3" type="t:PhoneType">
+                        <xs:annotation>
+                            <xs:documentation>Рабочий телефон 3</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Work_Address_KLADR_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код адреса места работы по справочнику КЛАДР</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Work_Address_Zipcode" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Индекс адреса работы</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Work_Address_Country" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Страна адреса работы</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Work_Address_Region" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Область адреса работы</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Work_Address_Section" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Район адреса работы</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Work_Address_City_Type" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Тип населенного пункта адреса работы</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Work_Address_City" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Населенный пункт адреса работы</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Work_Address_Town_Type" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Тип города адреса работы</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Work_Address_Town" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Город адреса работы</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Work_Address_Street_Type" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Тип улицы адреса работы</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Work_Address_Street" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Название улицы адреса работы</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Work_Address_House" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Номер дома адреса работы</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Work_Address_Doorway" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Корпус/строение адреса работы</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Work_Address_Apartment" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Квартира адреса работы</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="INN" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Номер ИНН</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="INN_Doc_series" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>ИНН - серия свидетельства</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="INN_Doc_Number" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>ИНН - номер свидетельства</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="INN_issue_date" type="t:SiebelDate">
+                        <xs:annotation>
+                            <xs:documentation>ИНН - дата выдачи</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Pension_certificate" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Номер свидетельства ГПФ</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Driving_License_series" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Водительское удостоверение - серия</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Driving_License_number" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Водительское удостоверение - номер</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Driving_License_date" type="t:SiebelDate">
+                        <xs:annotation>
+                            <xs:documentation>Водительское удостоверение - дата выдачи</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Driving_License_by_whom" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Водительское удостоверение - кем выдано</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="OMS_number" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Полис ОМС - номер</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="OMS_insurance_company" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Полис ОМС - название страховой компании</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Foreign_Passport_Series" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Заграничный паспорт - Серия</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Foreign_Passport_Number" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Заграничный паспорт - Номер</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Foreign_Passport_by_Whom" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Заграничный паспорт - Кем выдан</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Foreign_Passport_Issue_Date" type="t:SiebelDate">
+                        <xs:annotation>
+                            <xs:documentation>Заграничный паспорт - Дата выдачи</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Property_Type" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Тип имущества</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Property_ownership" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Наличие совладельцев</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Property_Auto_Marka" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Марка автомобиля</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Property_Auto_Year" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Год выпуска автомобиля</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Property_Auto_Country" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Страна-производитель автомобиля</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Active_Credit_Flg" type="t:SiebelBooleanType">
+                        <xs:annotation>
+                            <xs:documentation>Признак наличия открытых кредитов</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Active_Credit_Bank" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Наименование Банка, в котором есть открытый кредит</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Product_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код продукта в Siebel</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Credit_Period" type="xs:decimal">
+                        <xs:annotation>
+                            <xs:documentation>Срок кредита</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="First_Payment" type="xs:decimal">
+                        <xs:annotation>
+                            <xs:documentation>Первоначальный взнос</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="ListOfServiceProgram">
+                        <xs:annotation>
+                            <xs:documentation>Перечень "Программ услуг" по заявке.</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element maxOccurs="unbounded" minOccurs="0" name="ServiceProgram">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element minOccurs="0" name="ProgramName" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>Название программы услуг</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element minOccurs="0" name="PackNumber" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>Номер пакета услуг. (Для программы услуг
+                                                        "Хранители")
+                                                    </xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Insurance_Life_Flg" type="t:SiebelBooleanType">
+                        <xs:annotation>
+                            <xs:documentation>Признак наличия страхования жизни</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Insurance_Life_Company" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код страхового продукта по программе страхования жизни</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Insurance_Work_Flg" type="t:SiebelBooleanType">
+                        <xs:annotation>
+                            <xs:documentation>Признак наличия страхования от потери работы</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Insurance_Work_Company" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код страхового продукта по программе страхования от потери работы
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="In_BKI_Flg" type="t:SiebelBooleanType">
+                        <xs:annotation>
+                            <xs:documentation>Согласие клиента на передачу данных в БКИ</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Out_BKI_Flg" type="t:SiebelBooleanType">
+                        <xs:annotation>
+                            <xs:documentation>Согласие клиента на запрос данных из БКИ</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Customer_Estimate" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Визуальная оценка заемщика</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="ListOfGoods">
+                        <xs:annotation>
+                            <xs:documentation>Блок программы услуг</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element maxOccurs="unbounded" minOccurs="0" name="Good">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element minOccurs="0" name="Category" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>Категория товара</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element minOccurs="0" name="Name" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>Наименование товара</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element minOccurs="0" name="Marka" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>Марка товара</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element minOccurs="0" name="Model" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>Модель товара</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element minOccurs="0" name="Price" type="xs:decimal">
+                                                <xs:annotation>
+                                                    <xs:documentation>Цена товара</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element minOccurs="0" name="Quantity" type="xs:decimal">
+                                                <xs:annotation>
+                                                    <xs:documentation>Кол-во штук товара</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element minOccurs="0" name="SerialNumber" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>Серийный номер товара</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element minOccurs="0" name="ListOfGoodServiceProgram">
+                                                <xs:annotation>
+                                                    <xs:documentation>Блок программы услуг для товара</xs:documentation>
+                                                </xs:annotation>
+                                                <xs:complexType>
+                                                    <xs:sequence>
+                                                        <xs:element maxOccurs="unbounded" minOccurs="0" name="ServiceProgram">
+                                                            <xs:complexType>
+                                                                <xs:sequence>
+                                                                    <xs:element minOccurs="0" name="ProgramName" type="xs:string">
+                                                                        <xs:annotation>
+                                                                            <xs:documentation>Название программы услуг,
+                                                                                подключаемой для товара
+                                                                            </xs:documentation>
+                                                                        </xs:annotation>
+                                                                    </xs:element>
+                                                                </xs:sequence>
+                                                            </xs:complexType>
+                                                        </xs:element>
+                                                    </xs:sequence>
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="SMS_Info_Flg" type="t:SiebelBooleanType">
+                        <xs:annotation>
+                            <xs:documentation>Флаг согласия на подключение услуги СМС-информирование</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="OldDocSeries" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Серия "старого" идентифицирующего документа</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="OldDocNumber" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Номер "старого" идентифицирующего документа</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="SumGoodsNotDisc" type="xs:decimal">
+                        <xs:annotation>
+                            <xs:documentation>Сумма товаров без скидки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="ListOfOpportunityAttachment">
+                        <xs:annotation>
+                            <xs:documentation>Перечень прикрепляемых документов</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element maxOccurs="unbounded" minOccurs="0" name="OpportunityAttachment">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element minOccurs="0" name="DocumentType" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>Тип файла прикрепляемого документа
+                                                    </xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element minOccurs="0" name="OpptyFileName" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>Название файла прикрепляемого документа
+                                                    </xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element minOccurs="0" name="OpptyFileExt" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>Расширение файла прикрепляемого документа
+                                                    </xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element minOccurs="1" name="OpptyFileBuffer" type="xs:base64Binary">
+                                                <xs:annotation>
+                                                    <xs:documentation>Содержимое файла прикрепляемого документа
+                                                    </xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Opty_Tech_Info">
+                        <xs:annotation>
+                            <xs:documentation>Технические параметры заявки</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element minOccurs="0" name="Mobile_Device_Flg" type="t:SiebelBooleanType">
+                                    <xs:annotation>
+                                        <xs:documentation>Флаг Мобильное устройство</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="PC_Flg" type="t:SiebelBooleanType">
+                                    <xs:annotation>
+                                        <xs:documentation>Флаг ПК</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Incognito_Func_Flg" type="t:SiebelBooleanType">
+                                    <xs:annotation>
+                                        <xs:documentation>Признак функции Инкогнито в браузере</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Provider" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>Провайдер</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Go_To_Another_Page_Cnt" type="xs:decimal">
+                                    <xs:annotation>
+                                        <xs:documentation>Переход на другую Страницу</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Utc_Timezone" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>Часовой пояс</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Reg_Client_Dt" type="t:SiebelDate">
+                                    <xs:annotation>
+                                        <xs:documentation>Дата регистрации клиента</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Reg_Client_Type" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>Тип регистрации клиента</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Reg_Method" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>Способ регистрации</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Bid_Start_Work_Dt" type="t:SiebelDate">
+                                    <xs:annotation>
+                                        <xs:documentation>Дата начала заполнения в блоках «Идентификационные данные»
+                                        </xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Bid_Finish_Work_Dt" type="t:SiebelDate">
+                                    <xs:annotation>
+                                        <xs:documentation>Дата окончания заполнения в блоках «Идентификационные данные»
+                                        </xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Bid_Copy_Paste_Flg" type="t:SiebelBooleanType">
+                                    <xs:annotation>
+                                        <xs:documentation>Флаг вставки данных в блоках «Идентификационные данные»
+                                        </xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Old_Orders_Perc_Rate" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>Процент выкупа по старым заказам</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Cur_Delivery_Addr" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>Адрес доставки текущей заявки</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Prev_Delivery_Addr" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>Предыдущие адреса доставки</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Courier_Fio" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>ФИО курьера</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="IP_Addr" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>IP адрес</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Device_Name" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>Наименование устройства</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Browser_Name" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>Наименование браузера</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Screen_Resolution" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>Разрешение экрана</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="OS_Version" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>Версия операционной системы</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Geo_Latitude" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>Геолокация (широта)</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Geo_Longitude" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>Геолокация (долгота)</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Web_Page_Addr" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>Web-Адрес с которого осуществлен переход на страницу
+                                        </xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Online_Store_Client_ID" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>ID клиента в интернет - магазине</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="UTM_Label" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>utm метка</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Inp_Time_Cnt" type="xs:decimal">
+                                    <xs:annotation>
+                                        <xs:documentation>Время ввода данные по заявке</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Form_Change_Cnt" type="xs:decimal">
+                                    <xs:annotation>
+                                        <xs:documentation>Кол-во изменений в анкете</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Past_Prod_Inf" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>Информация о предыдущих покупках клиента в магазине
+                                        </xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Reg_Time_First_Order" type="t:SiebelDate">
+                                    <xs:annotation>
+                                        <xs:documentation>Время оформления первого заказа</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Reg_Time_Last_Order" type="t:SiebelDate">
+                                    <xs:annotation>
+                                        <xs:documentation>Время оформления последнего заказа</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Pmnt_Method_New" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>Способ оплаты первого взноса текущего заказа
+                                        </xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Pmnt_Method_Old" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>Способ оплаты по старым заказам</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Match_Num" type="t:PhoneType">
+                                    <xs:annotation>
+                                        <xs:documentation>Совпадение номера телефона из анкеты предыдущих заказов
+                                        </xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Delivery_Type" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>Тип доставки</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Quest_Entry_DT" type="t:SiebelDate">
+                                    <xs:annotation>
+                                        <xs:documentation>Дата входа в анкету</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="ListOfFraudRatings">
+                        <xs:annotation>
+                            <xs:documentation>Список оценок антифродовой системы</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element maxOccurs="unbounded" minOccurs="0" name="AntiFraudRating">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element minOccurs="0" name="AntiFraudRuleID" type="xs:decimal">
+                                                <xs:annotation>
+                                                    <xs:documentation>Номер сработавшего правила антифродовой системы
+                                                    </xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element minOccurs="0" name="AntiFraudScore" type="xs:decimal">
+                                                <xs:annotation>
+                                                    <xs:documentation>Оценка по сработавшему правилу антифродовой
+                                                        системы
+                                                    </xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CreateOptyResponse">
+                <xs:sequence>
+                    <xs:element name="Opty_Id" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Id созданной заявки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Error_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код ошибки, "0" означает отсутствие ошибки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Error_Message" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Текст сообщения</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ns="http://otpbank.ru/CreateOpty" elementFormDefault="qualified" targetNamespace="http://siebel.com/CustomUI">
+            <xs:element name="CreateOptyRequest" type="ns:CreateOptyRequest"/>
+            <xs:element name="CreateOptyResponse" type="ns:CreateOptyResponse"/>
+        </xs:schema>
+    </types>
+
+    <message name="CreateOptyRequest">
+        <part element="tns:CreateOptyRequest" name="CreateOptyRequest"/>
+    </message>
+    <message name="CreateOptyResponse">
+        <part element="tns:CreateOptyResponse" name="CreateOptyResponse"/>
+    </message>
+    <portType name="CreateOpty_spcv2">
+        <operation name="CreateOpty_spcv2">
+            <input message="tns:CreateOptyRequest"/>
+            <output message="tns:CreateOptyResponse"/>
+        </operation>
+    </portType>
+    <binding name="CreateOpty_spcv2" type="tns:CreateOpty_spcv2">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="CreateOpty_spcv2">
+            <soap:operation soapAction="document/http://siebel.com/CustomUI:CreateOpty_spcv2"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="CreateOpty_spcv2">
+        <port binding="tns:CreateOpty_spcv2" name="CreateOpty_spcv2">
+            <soap:address location="http://pos-t.isb:80/services"/>
+        </port>
+    </service>
+</definitions>

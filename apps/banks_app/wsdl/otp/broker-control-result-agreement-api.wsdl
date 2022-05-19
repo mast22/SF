@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://siebel.com/CustomUI" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://siebel.com/CustomUI">
+    <types>
+        <xsd:schema xmlns:t="http://otpbank.ru/Model/Types" targetNamespace="http://otpbank.ru/Model/Types">
+            <xsd:simpleType name="IntegrationIdType">
+                <xsd:restriction base="xsd:string">
+                    <xsd:pattern value="[*]{0}|[0-9A-Fa-f]{48}"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="nonEmptyString">
+                <xsd:restriction base="xsd:string">
+                    <xsd:minLength value="1"/>
+                    <xsd:whiteSpace value="collapse"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="PhoneType">
+                <xsd:annotation>
+                    <xsd:documentation>Тип номера телефона. Формат +7XXXXXXXXXX</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string">
+                    <xsd:pattern value="[+]7[0-9]{10}"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="SiebelBooleanType">
+                <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="Y">
+                        <xsd:annotation>
+                            <xsd:documentation>True</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="N">
+                        <xsd:annotation>
+                            <xsd:documentation>False</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:enumeration>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="SiebelDate">
+                <xsd:annotation>
+                    <xsd:documentation>Дата формата ММ/ДД/ГГГГ</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string">
+                    <xsd:pattern value="[0-9]{2}/[0-9]{2}/[0-9]{4}"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:schema>
+        <xs:schema xmlns:t="http://otpbank.ru/Model/Types" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://otpbank.ru/ControlResultAgreement">
+            <xs:complexType name="ControlResultAgreementRequest">
+                <xs:sequence>
+                    <xs:element name="environmentCode" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Идентификатор среды ПО Кредитный Брокер</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="optyID" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Идентификатор заявки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="checkResult" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Результат проверки договора</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="comment" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Комментарий по резолюции</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element maxOccurs="unbounded" name="opportunityAttachment">
+                        <xs:annotation>
+                            <xs:documentation>Прикрепляемый документ</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="documentType" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>Тип файла прикрепляемого документа</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element name="optyFileName" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>Название файла прикрепляемого документа</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element name="optyFileStatus" type="t:SiebelBooleanType">
+                                    <xs:annotation>
+                                        <xs:documentation>Статус проработки файла</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="optyFileComment" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>Комментарий</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ControlResultAgreementResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="1" name="Error_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код ошибки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Error_Message" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Текст ошибки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xsd:schema xmlns:ns="http://otpbank.ru/ControlResultAgreement" elementFormDefault="qualified" targetNamespace="http://siebel.com/CustomUI">
+            <xsd:element name="ControlResultAgreementRequest" type="ns:ControlResultAgreementRequest"/>
+            <xsd:element name="ControlResultAgreementResponse" type="ns:ControlResultAgreementResponse"/>
+        </xsd:schema>
+    </types>
+    <message name="ControlResultAgreementRequest">
+        <part element="tns:ControlResultAgreementRequest" name="ControlResultAgreementRequest"/>
+    </message>
+    <message name="ControlResultAgreementResponse">
+        <part element="tns:ControlResultAgreementResponse" name="ControlResultAgreementResponse"/>
+    </message>
+    <portType name="ControlResultAgreement">
+        <operation name="ControlResultAgreement">
+            <input message="tns:ControlResultAgreementRequest"/>
+            <output message="tns:ControlResultAgreementResponse"/>
+        </operation>
+    </portType>
+    <binding name="ControlResultAgreement" type="tns:ControlResultAgreement">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="ControlResultAgreement">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="ControlResultAgreement">
+        <port binding="tns:ControlResultAgreement" name="ControlResultAgreement">
+            <soap:address location="http://pos-t.isb:80/services"/>
+        </port>
+    </service>
+</definitions>

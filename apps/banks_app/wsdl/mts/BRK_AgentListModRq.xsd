@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2010 rel. 3 (http://www.altova.com) by MESMERiZE (MSM) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="Include\FDX.xsd"/>
+	<xs:element name="FDX">
+		<xs:annotation>
+			<xs:documentation>AgentListModRq</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="ServerInfo"/>
+				<xs:element name="BankSvcRq">
+					<xs:annotation>
+						<xs:documentation>Блок информации по ЮЛ, ТТ и агентам</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="OrgList">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="OrgRec" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:all>
+													<xs:element ref="ActionType" minOccurs="0"/>
+													<xs:element name="OrgCode" type="xs:string">
+														<xs:annotation>
+															<xs:documentation>Код торговой организации</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element ref="Name"/>
+													<xs:element name="PmtType" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Тип взаиморасчетов между банком и ЮЛ</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="PartnerNet" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Партнерская сеть, к которой принадлежит, ЮЛ</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="OrgType" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Тип юридического лица</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element ref="TaxId" minOccurs="0"/>
+													<xs:element ref="TaxRegCode" minOccurs="0"/>
+													<xs:element name="OKATO" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Код ОКАТО</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="PostAddr" type="Addr_Type" minOccurs="0"/>
+													<xs:element name="BankAcctId" minOccurs="0">
+														<xs:complexType>
+															<xs:all>
+																<xs:element ref="AcctId"/>
+																<xs:element name="BankInfo" type="BankInfo_CType" minOccurs="0"/>
+															</xs:all>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="TradePointList">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="TradePointRec" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:all>
+																			<xs:element ref="ActionType" minOccurs="0"/>
+																			<xs:element name="AgentList">
+																				<xs:annotation>
+																					<xs:documentation>Список агентов</xs:documentation>
+																				</xs:annotation>
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="AgentRec" maxOccurs="unbounded">
+																							<xs:annotation>
+																								<xs:documentation>Запись об агенте</xs:documentation>
+																							</xs:annotation>
+																							<xs:complexType>
+																								<xs:all>
+																									<xs:element ref="ActionType" minOccurs="0"/>
+																									<xs:element name="AgentId" type="xs:string" minOccurs="0">
+																										<xs:annotation>
+																											<xs:documentation>ID агента</xs:documentation>
+																										</xs:annotation>
+																									</xs:element>
+																									<xs:element name="RegionAvail" type="xs:string" minOccurs="0">
+																										<xs:annotation>
+																											<xs:documentation>Регион, в котором агент имет право заводить заявку</xs:documentation>
+																										</xs:annotation>
+																									</xs:element>
+																									<xs:element name="OrgCode" type="xs:string" minOccurs="0">
+																										<xs:annotation>
+																											<xs:documentation>Код торговой точки</xs:documentation>
+																										</xs:annotation>
+																									</xs:element>
+																									<xs:element ref="PartnerList" minOccurs="0"/>
+																									<xs:element name="OrgInfo" type="OrgInfo_CType" minOccurs="0">
+																										<xs:annotation>
+																											<xs:documentation>Информация об организации</xs:documentation>
+																										</xs:annotation>
+																									</xs:element>
+																									<xs:element name="PersonInfo" type="PersonInfo_CType" minOccurs="0"/>
+																									<xs:element ref="Active" minOccurs="0"/>
+																									<xs:element name="EmplCode" type="xs:string">
+																										<xs:annotation>
+																											<xs:documentation>Табельный номер сотрудника в ТТ</xs:documentation>
+																										</xs:annotation>
+																									</xs:element>
+																								</xs:all>
+																							</xs:complexType>
+																						</xs:element>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="OrgCode" type="xs:string">
+																				<xs:annotation>
+																					<xs:documentation>Код торговой точки</xs:documentation>
+																				</xs:annotation>
+																			</xs:element>
+																			<xs:element ref="Name"/>
+																			<xs:element ref="PartnerList" minOccurs="0"/>
+																			<xs:element ref="ContactInfo" minOccurs="0"/>
+																			<xs:element name="Coordinates" minOccurs="0">
+																				<xs:complexType>
+																					<xs:all>
+																						<xs:element name="Latitude" type="xs:string">
+																							<xs:annotation>
+																								<xs:documentation>Широта</xs:documentation>
+																							</xs:annotation>
+																						</xs:element>
+																						<xs:element name="Longitude" type="xs:string">
+																							<xs:annotation>
+																								<xs:documentation>Долгота</xs:documentation>
+																							</xs:annotation>
+																						</xs:element>
+																					</xs:all>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="BankAcctId" type="BankAcctId_Type" minOccurs="0"/>
+																			<xs:element ref="Active" minOccurs="0"/>
+																		</xs:all>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:all>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ActionType" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Тип действия</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="OrgInfo_CType">
+		<xs:annotation>
+			<xs:documentation>Тип информация об организации</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element ref="Primary" minOccurs="0"/>
+			<xs:element ref="Name" minOccurs="0"/>
+			<xs:element ref="LegalName" minOccurs="0"/>
+			<xs:element name="PostAddr" type="Addr_Type" minOccurs="0"/>
+			<xs:element ref="ClassifierId" minOccurs="0"/>
+			<xs:element ref="IndustId" minOccurs="0"/>
+			<xs:element name="EmplCount" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Количество сотрудников в организации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="StateRegPrimeNum" minOccurs="0"/>
+			<xs:element ref="TaxRegCode" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:element name="PartnerList">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="PartnerRec" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="OrgCode" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>Код банка-партнера в соответствии со справочником банков ДК</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="AgentCode" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>Присвоенный партнером код агента</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element ref="Status"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="PersonInfo_CType">
+		<xs:all>
+			<xs:element ref="PersonName"/>
+			<xs:element ref="ContactInfo" minOccurs="0"/>
+			<xs:element ref="Birthday" minOccurs="0"/>
+			<xs:element ref="IdentityCards" minOccurs="0"/>
+			<xs:element name="EmploymentHistory" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Информация о месте работы</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="StartDt" type="Date" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Дата приема на работу</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="BankInfo_CType">
+		<xs:all>
+			<xs:element name="BankIdType" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Тип идентификатора банка.
+Предопределенные значения:
+SWIFT – BIC S.W.I.F.T.
+RUS.BIC – БИК, присваиваемый ЦБ РФ
+</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="BankId"/>
+			<xs:element ref="Name" minOccurs="0"/>
+			<xs:element ref="TaxRegCode" minOccurs="0"/>
+			<xs:element name="CorrAcct" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер корреспондентского счета банка</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+</xs:schema>

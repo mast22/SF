@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://otpbank.ru/CancellationofAuthorization" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://siebel.com/CustomUI" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://siebel.com/CustomUI">
+    <types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://otpbank.ru/CancellationofAuthorization">
+            <xs:complexType name="CancellationofAuthorizationRequest">
+                <xs:sequence>
+                    <xs:element name="Environment_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Идентификатор среды ПО Кредитный Брокер</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="TT_Ext_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код торговой точки в ПО Кредитный Брокер</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Agent_Ext_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код агента, оформляющего кредит</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Chain_code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код Сети в справочнике Банка</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Agreement_Number" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Идентификатор заявки в ПО Siebel 8, по которой передается кредитное
+                                решение
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Authorization_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код авторизации договора</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="CancelAuthReason" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Причина отмены Авторизации</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CancellationofAuthorizationResponse">
+                <xs:sequence>
+                    <xs:element name="SR_Number" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Идентификатор созданого запроса в Siebel</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="File_Buffer" type="xs:base64Binary">
+                        <xs:annotation>
+                            <xs:documentation>Содержимое файла заявление на отмену авторизации
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Error_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код ошибки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Error_Message" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Текст ошибки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xsd:schema elementFormDefault="qualified" targetNamespace="http://siebel.com/CustomUI">
+            <xsd:element name="CancellationofAuthorizationRequest" type="ns:CancellationofAuthorizationRequest"/>
+            <xsd:element name="CancellationofAuthorizationResponse" type="ns:CancellationofAuthorizationResponse"/>
+        </xsd:schema>
+    </types>
+    <message name="CancellationofAuthorizationRequest">
+        <part element="tns:CancellationofAuthorizationRequest" name="CancellationofAuthorizationRequest"/>
+    </message>
+    <message name="CancellationofAuthorizationResponse">
+        <part element="tns:CancellationofAuthorizationResponse" name="CancellationofAuthorizationResponse"/>
+    </message>
+    <portType name="CancellationofAuthorizationIsb">
+        <operation name="CancellationofAuthorization">
+            <input message="tns:CancellationofAuthorizationRequest"/>
+            <output message="tns:CancellationofAuthorizationResponse"/>
+        </operation>
+    </portType>
+    <binding name="CancellationofAuthorizationIsb" type="tns:CancellationofAuthorizationIsb">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="CancellationofAuthorization">
+            <soap:operation soapAction="document/http://siebel.com/CustomUI:CancellationofAuthorization"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="CancellationofAuthorizationIsb">
+        <port binding="tns:CancellationofAuthorizationIsb" name="CancellationofAuthorizationIsb">
+            <soap:address location="http://pos-t.isb:80/services"/>
+        </port>
+    </service>
+</definitions>

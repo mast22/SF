@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsdLocal="http://www.siebel.com/xml/CreditLineBalanceRq" targetNamespace="http://www.siebel.com/xml/CreditLineBalanceRq" attributeFormDefault="unqualified" elementFormDefault="qualified">
+  <xsd:annotation>
+    <xsd:documentation>Copyright (C) 2001-2004 Siebel Systems, Inc. All rights reserved. Siebel XSD Generation</xsd:documentation>
+  </xsd:annotation>
+  <xsd:element name="CreditLineBalanceRq" type="xsdLocal:CreditLineBalanceRq"/>
+  <xsd:complexType name="CreditLineBalanceRqTopElmt">
+    <xsd:all>
+      <xsd:element name="CreditLineBalanceRq" type="xsdLocal:CreditLineBalanceRq" minOccurs="1" maxOccurs="1"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="CreditLineBalanceRq">
+    <xsd:all>
+      <xsd:element name="BrokerCode" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+      <xsd:element name="ReleaseVsn" type="xsd:string" maxOccurs="1" minOccurs="0"/>
+      <xsd:element name="TOCode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="AgreementNumber" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </xsd:all>
+  </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://siebel.com/CustomUI"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://siebel.com/CustomUI"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsdLocal1="http://www.siebel.com/xml/ATC%20Opportunity%20POS"
+    xmlns:xsdLocal2="http://www.siebel.com/xml/ATC%20Broker%20Application%20PF">
+
+    <types>
+        <xsd:schema elementFormDefault="qualified" targetNamespace="http://siebel.com/CustomUI">
+            <xsd:include schemaLocation="CustomUI.xsd"/>
+        </xsd:schema>
+    </types>
+	
+    <message name="scoreOptyWeb_Input">
+        <part element="tns:scoreOptyWeb_Input" name="scoreOptyWeb_Input"/>
+    </message>
+    <message name="scoreOptyWeb_Output">
+        <part element="tns:scoreOptyWeb_Output" name="scoreOptyWeb_Output"/>
+    </message>
+    <message name="scoreOpty_Input">
+        <part element="tns:scoreOpty_Input" name="scoreOpty_Input"/>
+    </message>
+    <message name="scoreOpty_Output">
+        <part element="tns:scoreOpty_Output" name="scoreOpty_Output"/>
+    </message>
+    <message name="checkScoreResult_Input">
+        <part element="tns:checkScoreResult_Input" name="checkScoreResult_Input"/>
+    </message>
+    <message name="checkScoreResult_Output">
+        <part element="tns:checkScoreResult_Output" name="checkScoreResult_Output"/>
+    </message>
+    <message name="getDocs_Input">
+        <part element="tns:getDocs_Input" name="getDocs_Input"/>
+    </message>
+    <message name="getDocs_Output">
+        <part element="tns:getDocs_Output" name="getDocs_Output"/>
+    </message>
+    <message name="confirmOffer_Input">
+        <part element="tns:confirmOffer_Input" name="confirmOffer_Input"/>
+    </message>
+    <message name="confirmOffer_Output">
+        <part element="tns:confirmOffer_Output" name="confirmOffer_Output"/>
+    </message>
+    <message name="docsSigned_Input">
+        <part element="tns:docsSigned_Input" name="docsSigned_Input"/>
+    </message>
+    <message name="docsSigned_Output">
+        <part element="tns:docsSigned_Output" name="docsSigned_Output"/>
+    </message>
+    <message name="offerCancelled_Input">
+        <part element="tns:offerCancelled_Input" name="offerCancelled_Input"/>
+    </message>
+    <message name="offerCancelled_Output">
+        <part element="tns:offerCancelled_Output" name="offerCancelled_Output"/>
+    </message>
+    <message name="checkStatus_Input">
+        <part element="tns:checkStatus_Input" name="checkStatus_Input"/>
+    </message>
+    <message name="checkStatus_Output">
+        <part element="tns:checkStatus_Output" name="checkStatus_Output"/>
+    </message>
+    <message name="approveSRRetRep_Input">
+        <part name="approveSRRetRep_Input" element="tns:approveSRRetRep_Input"/>
+    </message>
+    <message name="approveSRRetRep_Output">
+        <part name="approveSRRetRep_Output" element="tns:approveSRRetRep_Output"/>
+    </message>
+    <message name="createSRRetRep_Input">
+        <part name="createSRRetRep_Input" element="tns:createSRRetRep_Input"/>
+    </message>
+    <message name="createSRRetRep_Output">
+        <part name="createSRRetRep_Output" element="tns:createSRRetRep_Output"/>
+    </message>
+    <message name="getSES_Input">
+        <part name="getSES_Input" element="tns:getSES_Input"/>
+    </message>
+    <message name="getSES_Output">
+        <part name="getSES_Output" element="tns:getSES_Output"/>
+    </message>
+	
+    <portType name="WSBroker_POSPortType">
+        <operation name="scoreOptyWeb">
+            <input message="tns:scoreOptyWeb_Input"/>
+            <output message="tns:scoreOptyWeb_Output"/>
+        </operation>
+        <operation name="scoreOpty">
+            <input message="tns:scoreOpty_Input"/>
+            <output message="tns:scoreOpty_Output"/>
+        </operation>
+        <operation name="checkScoreResult">
+            <input message="tns:checkScoreResult_Input"/>
+            <output message="tns:checkScoreResult_Output"/>
+        </operation>
+        <operation name="getDocs">
+            <input message="tns:getDocs_Input"/>
+            <output message="tns:getDocs_Output"/>
+        </operation>
+        <operation name="confirmOffer">
+            <input message="tns:confirmOffer_Input"/>
+            <output message="tns:confirmOffer_Output"/>
+        </operation>
+        <operation name="docsSigned">
+            <input message="tns:docsSigned_Input"/>
+            <output message="tns:docsSigned_Output"/>
+        </operation>
+        <operation name="offerCancelled">
+            <input message="tns:offerCancelled_Input"/>
+            <output message="tns:offerCancelled_Output"/>
+        </operation>
+        <operation name="checkStatus">
+            <input message="tns:checkStatus_Input"/>
+            <output message="tns:checkStatus_Output"/>
+        </operation>
+        <operation name="approveSRRetRep">
+            <input message="tns:approveSRRetRep_Input"/>
+            <output message="tns:approveSRRetRep_Output"/>
+        </operation>
+        <operation name="createSRRetRep">
+            <input message="tns:createSRRetRep_Input"/>
+            <output message="tns:createSRRetRep_Output"/>
+        </operation>
+        <operation name="getSES">
+            <input message="tns:getSES_Input"/>
+            <output message="tns:getSES_Output"/>
+        </operation>
+    </portType>
+	
+    <binding name="broker_service_25" type="tns:WSBroker_POSPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="scoreOptyWeb">
+            <soap:operation soapAction="document/http://siebel.com/CustomUI:scoreOptyWeb"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="scoreOpty">
+            <soap:operation soapAction="document/http://siebel.com/CustomUI:scoreOpty"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="checkScoreResult">
+            <soap:operation soapAction="document/http://siebel.com/CustomUI:checkScoreResult"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getDocs">
+            <soap:operation soapAction="document/http://siebel.com/CustomUI:getDocs"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="confirmOffer">
+            <soap:operation soapAction="document/http://siebel.com/CustomUI:confirmOffer"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="docsSigned">
+            <soap:operation soapAction="document/http://siebel.com/CustomUI:docsSigned"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="offerCancelled">
+            <soap:operation soapAction="document/http://siebel.com/CustomUI:offerCancelled"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="checkStatus">
+            <soap:operation soapAction="document/http://siebel.com/CustomUI:checkStatus"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="approveSRRetRep">
+            <soap:operation soapAction="document/http://siebel.com/CustomUI:approveSRRetRep"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="createSRRetRep">
+            <soap:operation soapAction="document/http://siebel.com/CustomUI:createSRRetRep"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getSES">
+            <soap:operation soapAction="document/http://siebel.com/CustomUI:getSES"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+	
+    <service name="broker_service_25">
+        <port binding="tns:broker_service_25" name="broker_service_25">
+            <soap:address
+                location="https://172.18.22.213/eai_anon_rus/start.swe?SWEExtSource=AnonWebService&amp;SWEExtCmd=Execute"
+            />
+        </port>
+    </service>
+</definitions>

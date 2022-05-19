@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2010 rel. 3 (http://www.altova.com) by MESMERiZE (MSM) -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mbrd="mbrd" targetNamespace="mbrd" id="ClientsList_Request">
+	<xsd:include schemaLocation="Include\systemDictionaries.xsd"/>
+	<xsd:include schemaLocation="Include\clientComplexData_strict.xsd"/>
+	<xsd:include schemaLocation="Include\clientData_strict.xsd"/>
+	<!-- Импорт базовых типов -->
+	<xsd:include schemaLocation="Include\systemComplexTypes.xsd"/>
+	<xsd:include schemaLocation="Include\MTS\mts_Types.xsd"/>
+	<xsd:element name="requestMTS">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="mtsRequestId" type="mbrd:mtsRequestId" nillable="false">
+					<xsd:annotation>
+						<xsd:documentation>Идентификатор заявки</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="extRequestId" type="xsd:string" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>Идентификатор заявки системы в Банке</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="messageId" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>Уникальный идентификатор сообщения (GUID)</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="messageType">
+					<xsd:annotation>
+						<xsd:documentation>Тип сообщения</xsd:documentation>
+					</xsd:annotation>
+					<xsd:simpleType>
+						<xsd:restriction base="mbrd:messageType"/>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="messageDateTime" type="xsd:dateTime">
+					<xsd:annotation>
+						<xsd:documentation>Дата время создания сообщения (ГГГГ-ММ-ДДTЧЧ:ММ:ССZ)</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="SPName" type="mbrd:systemType">
+					<xsd:annotation>
+						<xsd:documentation>Код отправителя сообщения </xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="MsgReceiver" type="mbrd:systemType">
+					<xsd:annotation>
+						<xsd:documentation>MsgReceiver</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="ServerInfo" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="MsgType" type="xsd:string"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="MTSPOSSpecificData" type="mbrd:MTSPOSSpecificDataType">
+					<xsd:annotation>
+						<xsd:documentation>Специфичные данные ПОС-заявки</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="MTSPOSSpecificDataType">
+		<xsd:annotation>
+			<xsd:documentation>Данные передаваемые в рамках проекта MTS-POS</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="requestData" type="mbrd:MTSPOSRequestDataType"/>
+			<xsd:element name="documents" type="mbrd:MTSPOSDocumentsDataType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="MTSPOSRequestDataType">
+		<xsd:annotation>
+			<xsd:documentation>Специфичные данные заявки МТС</xsd:documentation>
+		</xsd:annotation>
+		<xsd:all>
+			<xsd:element name="registrationDate" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation>Дата создания заявки в ПО КБ</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="franchise_code" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Код торговой организации, к которой принадлежит торговая точка</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="mts_pos_code" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Код точки отпуска МТС(РТК)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="mts_pos_reg_code">
+				<xsd:annotation>
+					<xsd:documentation>Код региона точки отпуска </xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:length value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="mts_pos_address">
+				<xsd:annotation>
+					<xsd:documentation>Адрес точки отпуска </xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="255"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="kladr_reg_code" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>КЛАДР код региона, в котором расположена торговая точка</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="userCode" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Табельный номер сотрудника заводившего заявку</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="userFIO" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>ФИО сотрудника заводившего заявку</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="255"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="userHashCard" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Hash номер карты сотрудника оформившего заявку</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:length value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="clientSegmentCode" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Составной код сегмента клиента</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="mtsClientReliability" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Признак благонадежности клиента по оценке оператором ПО КБ (0-низкая надежность (передавать если не хотим выдать клиенту кредитную карту), 10 - высокая надежность)</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="50"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="mtsClientReliabilityComment" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Комментарий к признаку благонадежности клиента. Обязателен для заполнения при mtsClientReliability = 0</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="255"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="initialPayment" nillable="false" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Первоначальный взнос</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:decimal">
+						<xsd:fractionDigits value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="summa_buy" type="mbrd:elemAmount" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Сумма покупки</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="purchases" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Покупки</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="purchase" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Покупка</xsd:documentation>
+							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:all>
+									<xsd:element name="purchaseCode">
+										<xsd:annotation>
+											<xsd:documentation>Код (артикул) товара</xsd:documentation>
+										</xsd:annotation>
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:string">
+												<xsd:maxLength value="36"/>
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+									<xsd:element name="purchaseName">
+										<xsd:annotation>
+											<xsd:documentation>Наименование товара</xsd:documentation>
+										</xsd:annotation>
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:string">
+												<xsd:maxLength value="512"/>
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+									<xsd:element name="purchaseCost">
+										<xsd:annotation>
+											<xsd:documentation>Стоимость (сумма)</xsd:documentation>
+										</xsd:annotation>
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:decimal">
+												<xsd:fractionDigits value="2"/>
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+									<xsd:element name="purchaseQuantity" type="xsd:int">
+										<xsd:annotation>
+											<xsd:documentation>Количество товаров</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+									<xsd:element name="IMEI" minOccurs="0">
+										<xsd:annotation>
+											<xsd:documentation>Международный Идентификатор Мобильного Оборудования</xsd:documentation>
+										</xsd:annotation>
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:string">
+												<xsd:maxLength value="15"/>
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+									<xsd:element name="serialNum" minOccurs="0">
+										<xsd:annotation>
+											<xsd:documentation>Серийный номер</xsd:documentation>
+										</xsd:annotation>
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:string">
+												<xsd:maxLength value="30"/>
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+									<xsd:element name="category" type="xsd:string" minOccurs="0">
+										<xsd:annotation>
+											<xsd:documentation>Категория товара</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+									<xsd:element name="subCategory" type="xsd:string" minOccurs="0">
+										<xsd:annotation>
+											<xsd:documentation>Подкатегория товара</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+									<xsd:element name="isMain" type="xsd:boolean" minOccurs="0">
+										<xsd:annotation>
+											<xsd:documentation>Признак основного товара</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+								</xsd:all>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="discountPercent" type="xsd:decimal" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Размер скидки (%)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="optimalLimit" type="mbrd:elemAmount" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Оптимальный лимит</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="mtsRequestIdCrossSale" type="mbrd:mtsRequestId" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Идентификатор связанной заявки</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="flagCrossSaleMainRequest" type="xsd:boolean" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Признак основной заявки (если есть связанная заявка)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="adjustmentResult" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Статус с результатом корректировки чека</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:all>
+	</xsd:complexType>
+</xsd:schema>

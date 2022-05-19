@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://siebel.com/CustomUI" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://siebel.com/CustomUI">
+    <types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://otpbank.ru/TransferGoods">
+            <xs:complexType name="TransferGoodsRequest">
+                <xs:sequence>
+                    <xs:element name="Environment_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Идентификатор среды ПО Кредитный Брокер</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="TT_Ext_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код торговой точки в ПО Кредитный Брокер</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Agent_Ext_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код агента, оформляющего кредит</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Chain_code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код Сети в справочнике Банка</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="SR_Number" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Идентификатор созданого запроса в Siebel</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ListOfGoods">
+                        <xs:annotation>
+                            <xs:documentation>Блок программы услуг</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element maxOccurs="unbounded" name="Good">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element name="Category" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>Категория товара</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element name="Name" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>Наименование товара</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element name="Marka" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>Марка товара</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element name="Model" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>Модель товара</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element name="Price" type="xs:decimal">
+                                                <xs:annotation>
+                                                    <xs:documentation>Цена товара</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element name="Quantity" type="xs:decimal">
+                                                <xs:annotation>
+                                                    <xs:documentation>Кол-во штук товара</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element name="Good_Id" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>Идентификатор заявки</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element name="Good_Flg" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>Признак, показывающий о наличие изменений по товару
+                                                    </xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TransferGoodsResponse">
+                <xs:sequence>
+                    <xs:element name="Orig_Sum" type="xs:decimal">
+                        <xs:annotation>
+                            <xs:documentation>Стоимомсть товаров До</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Old_Credit_Amount" type="xs:decimal">
+                        <xs:annotation>
+                            <xs:documentation>Старая сумма кредита</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="New_Credit_Amount" type="xs:decimal">
+                        <xs:annotation>
+                            <xs:documentation>Новая сумма кредита</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Summ_To_Bank" type="xs:decimal">
+                        <xs:annotation>
+                            <xs:documentation>Сумма перечесления в банк</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Summ_From_Cashier" type="xs:decimal">
+                        <xs:annotation>
+                            <xs:documentation>Сумма выплаты из кассы</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="1" name="File_Buffer" type="xs:base64Binary">
+                        <xs:annotation>
+                            <xs:documentation>Содержимое файла ПФ "Заявление на возврат/ замену"
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="1" name="Error_Code" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Код ошибки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Error_Message" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Текст ошибки</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+
+        <xsd:schema xmlns:ns="http://otpbank.ru/TransferGoods" elementFormDefault="qualified" targetNamespace="http://siebel.com/CustomUI">
+            <xsd:element name="TransferGoodsRequest" type="ns:TransferGoodsRequest"/>
+            <xsd:element name="TransferGoodsResponse" type="ns:TransferGoodsResponse"/>
+        </xsd:schema>
+    </types>
+    <message name="TransferGoodsRequest">
+        <part element="tns:TransferGoodsRequest" name="TransferGoodsRequest"/>
+    </message>
+    <message name="TransferGoodsResponse">
+        <part element="tns:TransferGoodsResponse" name="TransferGoodsResponse"/>
+    </message>
+    <portType name="TransferGoodsIbs">
+        <operation name="TransferGoods_spcv2">
+            <input message="tns:TransferGoodsRequest"/>
+            <output message="tns:TransferGoodsResponse"/>
+        </operation>
+    </portType>
+    <binding name="TransferGoodsIbs" type="tns:TransferGoodsIbs">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="TransferGoods_spcv2">
+            <soap:operation soapAction="document/http://siebel.com/CustomUI:TransferGoods_spcv2"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="TransferGoodsIbs">
+        <port binding="tns:TransferGoodsIbs" name="TransferGoodsIbs">
+            <soap:address location="http://pos-t.isb:80/services"/>
+        </port>
+    </service>
+</definitions>

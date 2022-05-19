@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2010 rel. 3 (http://www.altova.com) by MESMERiZE (MSM) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="Include\FDX.xsd"/>
+	<xs:element name="FDX">
+		<xs:annotation>
+			<xs:documentation>RequestStatusModRq</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="ServerInfo">
+					<xs:annotation>
+						<xs:documentation>Служебная информация</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="MsgUID" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>Идентификато сообщения</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="RqUID" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>Идентификато запроса</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="SPName">
+								<xs:annotation>
+									<xs:documentation>Система отправитель</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="KREDIT_OTDEL"/>
+										<xs:enumeration value="VSEGDA_DA"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="MsgReceiver" type="xs:string" fixed="SIEBEL">
+								<xs:annotation>
+									<xs:documentation>Система получатель</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ServerDt" type="xs:dateTime">
+								<xs:annotation>
+									<xs:documentation>Дата/время запроса</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="MsgType" type="xs:string" fixed="RequestStatusModRq">
+								<xs:annotation>
+									<xs:documentation>Тип сообщения </xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ExtMsgType" type="xs:string" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Расширенный тип сообщения</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="BpId" type="xs:string" default="BP_ID" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Идентификатор БП в РБО</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="BankSvcRq">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="EmplInfo" minOccurs="0">
+								<xs:complexType>
+									<xs:all>
+										<xs:element name="Name">
+											<xs:annotation>
+												<xs:documentation>ФИО сотрудника</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:length value="150"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="EmplId">
+											<xs:annotation>
+												<xs:documentation>ID сотрудника</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string"/>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="RCId" type="xs:string" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Идентификатор структурного подразделения</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="JobTitle" type="xs:string" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Должность сотрдуника</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="BankInfo" minOccurs="0">
+											<xs:complexType>
+												<xs:all>
+													<xs:element name="PostAddr" type="Addr_Type" minOccurs="0"/>
+												</xs:all>
+											</xs:complexType>
+										</xs:element>
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="RequestInfo">
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="RequestId" minOccurs="0"/>
+										<xs:element name="MTSRequestId" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>ID заявки в ПО КБ</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="EDSCode" type="xs:string" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Код АСП</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element ref="Phone" minOccurs="0"/>
+										<xs:element name="ClientSessionInfo" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Информация о сессии броузера клиента при подписании документации</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:all>
+													<xs:element name="IPAddr" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>IP адрес</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="MACAddr" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>MAC адрес устройства</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element ref="Link">
+														<xs:annotation>
+															<xs:documentation>Ссылка, по которой перешел клиент</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:all>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="RequestStatus">
+											<xs:complexType>
+												<xs:all>
+													<xs:element name="StatusCode" type="xs:string">
+														<xs:annotation>
+															<xs:documentation>Статус подписания документации</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="EffDt" type="DateTime">
+														<xs:annotation>
+															<xs:documentation>Дата и время подписания</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:all>
+											</xs:complexType>
+										</xs:element>
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="DocList" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Список файлов</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="DocRec" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element ref="OrigName"/>
+													<xs:element ref="DocTypeCode"/>
+													<xs:element ref="DocTypeName"/>
+													<xs:element name="HashDoc" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Хэш от документа</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:choice minOccurs="0">
+														<xs:element ref="Data"/>
+														<xs:element ref="Link"/>
+													</xs:choice>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

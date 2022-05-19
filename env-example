@@ -1,0 +1,13 @@
+DB_NAME=sf
+DB_USER=postgres
+DB_PASSWORD=pass
+DB_HOST=127.0.0.1
+TESTING_ENV=True
+DB_PORT=5432
+DATABASE_URL=postgresql://postgres:pass@127.0.0.1:5432/sf
+TELEGRAM_BOT_TOKEN=1056912345:AAETa-2r7wqwerxtrlysv42rpTrpFqwe
+BROWSABLE_FORMS=True
+VERIFY_SSL=False
+REDIRECT_CALLBACKS_TO_STAGE=False
+LOG_WEBSOCKET=/var/log/sf/websocket_info.log
+ENV=dev

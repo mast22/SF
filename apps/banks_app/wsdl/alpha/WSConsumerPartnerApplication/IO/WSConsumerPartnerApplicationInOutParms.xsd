@@ -1,0 +1,920 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2014 rel. 2 sp1 (x64) (http://www.altova.com) by CINIMEX-INFORMATICA (CINIMEX-INFORMATICA) -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://WSConsumerPartnerApplicationInOutParms10.IO.CS.ws.alfabank.ru" xmlns:wsct="http://WSCommonTypes10.CS.ws.alfabank.ru" targetNamespace="http://WSConsumerPartnerApplicationInOutParms10.IO.CS.ws.alfabank.ru">
+	<xsd:import namespace="http://WSCommonTypes10.CS.ws.alfabank.ru" schemaLocation="../WSCommonTypes10.xsd"/>
+	<!-- Input parameters -->
+	<xsd:complexType name="WSConsumerPartnerApplicationAddRequestInParms">
+		<xsd:sequence>
+			<!-- Тип заказа -->
+			<xsd:element name="orderType" type="wsct:WSTypeChar2"/>
+			<!-- Идентификатор заявки во внешней системе -->
+			<xsd:element name="rfe" type="wsct:WSTypeChar16"/>
+			<!-- Технический код агента продаж -->
+			<xsd:element name="agent_code" type="wsct:WSTypeChar35" minOccurs="0"/>
+			<!-- Внешний код агента (например, код агента в КБ) -->
+			<xsd:element name="agent_code_ext" type="wsct:WSTypeChar50" minOccurs="0"/>
+			<!-- Идентификатор магазина -->
+			<xsd:element name="shop_id" type="wsct:WSTypeChar10" minOccurs="0"/>
+			<!-- УРЛ - источник заявки -->
+			<xsd:element name="app_url" type="tns:TypeChar555" minOccurs="0"/>
+			<!-- Код рекламной площадки - источника заявки -->
+			<xsd:element name="advert_code" type="wsct:WSTypeChar255" minOccurs="0"/>
+			<!-- Код 911 -->
+			<xsd:element name="code_911" type="wsct:WSTypeChar10" minOccurs="0"/>
+			<!-- Комментарий к коду 911 -->
+			<xsd:element name="code_911_dsc" type="wsct:WSTypeChar255" minOccurs="0"/>
+			<!-- Код внешней системы -->
+			<xsd:element name="extsys" type="wsct:WSTypeChar40" minOccurs="0"/>
+			<!-- Код сохранения данных -->
+			<xsd:element name="sms_code" type="wsct:WSTypeChar40" minOccurs="0"/>
+			<!-- CUS клиента -->
+			<xsd:element name="cust_cus" type="wsct:WSTypeChar6" minOccurs="0"/>
+			<!-- CLC клиента -->
+			<xsd:element name="cust_cls" type="wsct:WSTypeChar3" minOccurs="0"/>
+			<!-- Код категории клиента -->
+			<xsd:element name="cust_cat_code" type="tns:CustCatCod" minOccurs="0"/>
+			<!-- Фамилия -->
+			<xsd:element name="cust_surname" type="tns:TypeName35" minOccurs="0"/>
+			<!-- Имя -->
+			<xsd:element name="cust_name" type="tns:TypeName35" minOccurs="0"/>
+			<!-- Отчество-->
+			<xsd:element name="cust_patronymic" type="tns:TypeName35" minOccurs="0"/>
+			<!-- Дата рождения -->
+			<xsd:element name="cust_brthdt" type="xsd:date" minOccurs="0"/>
+			<!-- Пол клиента -->
+			<xsd:element name="cust_genger" type="tns:TypeGenger" minOccurs="0"/>
+			<!-- Серия и номер паспорта клиента -->
+			<xsd:element name="pass_num" type="tns:PassNum" minOccurs="0"/>
+			<!-- Кем выдан паспорт -->
+			<xsd:element name="pass_auth_name" type="tns:PassAuthName" minOccurs="0"/>
+			<!-- Дата выдачи паспорта -->
+			<xsd:element name="pass_isdt" type="xsd:date" minOccurs="0"/>
+			<!-- Подразделение выдачи паспорта -->
+			<xsd:element name="pass_subdivision_code" type="wsct:WSTypeChar7" minOccurs="0"/>
+			<!-- Место рождения клиента -->
+			<xsd:element name="cust_brthplc" type="wsct:WSTypeChar35" minOccurs="0"/>
+			<!-- Серия предыдущего паспорта -->
+			<xsd:element name="pass_prev_ser" type="tns:PassPrevSer" minOccurs="0"/>
+			<!-- Номер предыдущего паспорта -->
+			<xsd:element name="pass_prev_num" type="tns:PassPrevNum" minOccurs="0"/>
+			<!-- Код типа изменения ФИО (Фамилия, Имя, Отчество, Все) -->
+			<xsd:element name="cust_chng_code" type="tns:TypeCustChngCode" minOccurs="0"/>
+			<!-- Имя -->
+			<xsd:element name="cust_prev_name" type="tns:TypeName35" minOccurs="0"/>
+			<!-- Фамилия -->
+			<xsd:element name="cust_prev_surname" type="tns:TypeName35" minOccurs="0"/>
+			<!-- Отчество -->
+			<xsd:element name="cust_prev_patronymic" type="tns:TypeName35" minOccurs="0"/>
+			<!-- Дата изменения ФИО -->
+			<xsd:element name="cust_chng_dt" type="xsd:date" minOccurs="0"/>
+			<!-- Имя для эмбоссирования -->
+			<xsd:element name="cust_emb_name" type="wsct:WSTypeChar35" minOccurs="0"/>
+			<!-- Фамилия для эмбоссирования -->
+			<xsd:element name="cust_emb_surname" type="wsct:WSTypeChar35" minOccurs="0"/>
+			<!-- Имя для эмбоссирования (латиница) -->
+			<xsd:element name="cust_emb_name_lat" type="wsct:WSTypeChar35" minOccurs="0"/>
+			<!-- Фамилия для эмбоссирования (латиница) -->
+			<xsd:element name="cust_emb_surname_lat" type="wsct:WSTypeChar35" minOccurs="0"/>
+			<!-- СНИЛС -->
+			<xsd:element name="snils" type="wsct:WSTypeChar11" minOccurs="0" maxOccurs="1"/>
+			<!-- СНИЛС, полученный из EQ. Передается в этом поле, если вносились изменения, а новый в таком случае передается в теге SNILS -->
+			<xsd:element name="old_snils" type="wsct:WSTypeChar11" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="beneficiary" type="tns:Beneficiary" minOccurs="0" maxOccurs="unbounded"/>
+			<!-- Код образования -->
+			<xsd:element name="edu_code" type="tns:EduCode" minOccurs="0"/>
+			<!-- Код семейного положения -->
+			<xsd:element name="mar_st_code" type="tns:TypeMarStCode" minOccurs="0"/>
+			<!-- Фамилия супруга/супруги -->
+			<xsd:element name="sp_surname" type="tns:TypeName35" minOccurs="0"/>
+			<!-- Имя супруга/супруги -->
+			<xsd:element name="sp_name" type="tns:TypeName35" minOccurs="0"/>
+			<!-- Отчество супруга/супруги -->
+			<xsd:element name="sp_patronymic" type="tns:TypeName35" minOccurs="0"/>
+			<!-- Дата рождения супруга/супруги -->
+			<xsd:element name="sp_brthdt" type="xsd:date" minOccurs="0"/>
+			<!-- Дата вступления в брак/начала совместного проживания -->
+			<xsd:element name="mar_dt" type="xsd:date" minOccurs="0"/>
+			<!-- Социальный статус супруга/супруги -->
+			<xsd:element name="sp_soc_sts" type="xsd:boolean" minOccurs="0"/>
+			<!-- Мобильный телефон супруга -->
+			<xsd:element name="sp_mob_ph" type="wsct:WSTypeChar11"/>
+			<!-- Количество детей -->
+			<xsd:element name="child_quant" type="tns:ChildQuant" minOccurs="0"/>
+			<!-- Количество иждивенцев -->
+			<xsd:element name="dep_quant" type="tns:Int99" minOccurs="0"/>
+			<!-- Наличие пакета услуг "Альфа-Жизнь" -->
+			<xsd:element name="al_flg" type="xsd:boolean" minOccurs="0"/>
+			<!-- Способ доставки выписок и корреспонденции -->
+			<xsd:element name="correspondence" type="tns:CorrespondTyp" minOccurs="0"/>
+			<!-- Кодовое слово клиента -->
+			<xsd:element name="codewrd" type="tns:Codewrd" minOccurs="0"/>
+			<!-- Предоставленные клиентом документы -->
+			<xsd:element name="docs" type="tns:Docum"/>
+			<!-- Флаг "Документы предоставлены" -->
+			<xsd:element name="dcs_prvd_flg" type="xsd:boolean" minOccurs="0"/>
+			<!-- Признак наличия транспортного средства -->
+			<xsd:element name="ts_flg" type="xsd:boolean" minOccurs="0"/>
+			<!-- Тип собственности автомобиля -->
+			<xsd:element name="ts_own_kind" type="tns:TsOwnKind" minOccurs="0"/>
+			<!-- Код марки автомобиля -->
+			<xsd:element name="ts_brand" type="wsct:WSTypeChar40" minOccurs="0"/>
+			<!-- Код категории транспортного средства -->
+			<xsd:element name="ts_cat_code" type="tns:TsCatCode" minOccurs="0"/>
+			<!-- Дата выпуска ТС -->
+			<xsd:element name="ts_release_dt" type="xsd:date" minOccurs="0"/>
+			<!-- Государственный номер ТС -->
+			<xsd:element name="ts_reg_num" type="tns:TsRegNum" minOccurs="0"/>
+			<!-- Срок владения -->
+			<xsd:element name="ts_tenure_term" type="tns:TsTenureTerm" minOccurs="0"/>
+			<!-- Количество транспортных средств  -->
+			<xsd:element name="ts_quant" type="xsd:int" minOccurs="0"/>
+			<!-- Тип кредита  -->
+			<xsd:element name="cred_typ" type="tns:CredTyp" minOccurs="0"/>
+			<!-- Сумма кредита  -->
+			<xsd:element name="cred_ama" type="tns:TypeDecimal192" minOccurs="0"/>
+			<!-- Срок кредита  -->
+			<xsd:element name="cred_term" type="xsd:int" minOccurs="0"/>
+			<!-- Срок кредита  -->
+			<xsd:element name="cred_purpose" type="wsct:WSTypeChar35" minOccurs="0"/>
+			<!-- Валюта кредита  -->
+			<xsd:element name="cred_cur" type="tns:CredCur" minOccurs="0"/>
+			<!-- Предпочтительный день платежа  -->
+			<xsd:element name="due_day" type="tns:MonthDay" minOccurs="0"/>
+			<!-- Тип страхового продукта  -->
+			<xsd:element name="insur_typ" type="wsct:WSTypeChar10" minOccurs="0"/>
+			<!-- Тип карточной платёжной системы  -->
+			<xsd:element name="crd_paysys_code" type="xsd:string" minOccurs="0"/>
+			<!-- Категория карты  -->
+			<xsd:element name="crd_cat" type="xsd:string" minOccurs="0"/>
+			<!-- Тип карты  -->
+			<xsd:element name="crd_typ" type="wsct:WSTypeChar40" minOccurs="0"/>
+			<!-- Признак заявки на увеличение лимита -->
+			<xsd:element name="lt_incrs" type="xsd:boolean"/>
+			<!-- Признак льготного клиента (для проекта "Мои правила")  -->
+			<xsd:element name="favor_flg" type="xsd:boolean" minOccurs="0"/>
+			<!-- Признак наличия доп.документов (для проекта "Мои правила")  -->
+			<xsd:element name="add_doc_flg" type="xsd:boolean" minOccurs="0"/>
+			<!-- Признак тарифного конфигуратора  -->
+			<xsd:element name="tariff_config" type="xsd:boolean" minOccurs="0"/>
+			<!-- Код продукта  -->
+			<xsd:element name="prod_code" type="wsct:WSTypeChar10" minOccurs="0"/>
+			<!-- Код продукта (дополнительный, для УП)  -->
+			<xsd:element name="prod_code_add" type="wsct:WSTypeChar10" minOccurs="0"/>
+			<!-- Признак "Максимальный лимит"  -->
+			<xsd:element name="is_max_limit" type="xsd:boolean" minOccurs="0"/>
+			<!--Код пилота-->
+			<xsd:element name="pilot_code" type="wsct:WSTypeChar50" minOccurs="0"/>
+			<!-- Название пилотного проекта  -->
+			<xsd:element name="pilot_name" type="wsct:WSTypeChar255" minOccurs="0"/>
+			<!-- Код отделения получения кредита  -->
+			<xsd:element name="cred_brnm" type="wsct:WSTypeChar4" minOccurs="0"/>
+			<!-- Город получения кредитного продукта  -->
+			<xsd:element name="cred_cty" type="wsct:WSTypeChar35" minOccurs="0"/>
+			<!-- Бонусный номер существующей карты  -->
+			<xsd:element name="bonus_num" type="wsct:WSTypeChar35" minOccurs="0"/>
+			<!-- Признак желания клиента заказать Companion Card -->
+			<xsd:element name="compcrd_flg" type="xsd:boolean" minOccurs="0"/>
+			<!-- Код отделения получения карты по технологии Companion Card -->
+			<xsd:element name="compcrd_brnm" type="wsct:WSTypeChar4" minOccurs="0"/>
+			<!-- Наличие у клиента счёта ЕН, на котором есть овердрафт (не технический) -->
+			<xsd:element name="ovd" type="xsd:boolean" minOccurs="0"/>
+			<!-- Способ подтверждения дохода -->
+			<xsd:element name="inc_apr_method" type="tns:IncAprMethod" minOccurs="0"/>
+			<!-- Код пакета -->
+			<xsd:element name="pkg_code" type="wsct:WSTypeChar4" minOccurs="0"/>
+			<!-- Массив дополнительных продуктов -->
+			<xsd:element name="add_prod" type="tns:AddProd" maxOccurs="unbounded"/>
+			<!-- Массив адресов -->
+			<xsd:element name="address" type="tns:Address" maxOccurs="unbounded"/>
+			<!-- Тип занятости -->
+			<xsd:element name="wrk_emp_typ" type="tns:WrkEmpTyp" minOccurs="0"/>
+			<!-- Дата начала работы -->
+			<xsd:element name="wrk_stdt" type="xsd:date" minOccurs="0"/>
+			<!-- Количество сотрудников в организации -->
+			<xsd:element name="wrk_emp_quant" type="tns:WrkEmpQuant" minOccurs="0"/>
+			<!-- Род деятельности -->
+			<xsd:element name="wrk_profession" type="wsct:WSTypeChar35" minOccurs="0"/>
+			<!-- Тип компании -->
+			<xsd:element name="wrk_comp_typ" type="tns:WrkCompTyp" minOccurs="0"/>
+			<!-- Сфера деятельности -->
+			<xsd:element name="wrk_industry_sector" type="wsct:WSTypeChar35" minOccurs="0"/>
+			<!-- Тип должности -->
+			<xsd:element name="wrk_pos_typ" type="tns:WrkPosTyp" minOccurs="0"/>
+			<!-- Должность -->
+			<xsd:element name="wrk_emp" type="wsct:WSTypeChar35" minOccurs="0"/>
+			<!-- Общий трудовой стаж -->
+			<xsd:element name="wrk_term" type="tns:WrkTerm" minOccurs="0"/>
+			<!-- Наименование организации клиента -->
+			<xsd:element name="wrk_name" type="tns:TypeChar90" minOccurs="0"/>
+			<!-- Организационно-правовая форма -->
+			<xsd:element name="wrk_opf" type="tns:WrkOpf" minOccurs="0"/>
+			<!-- Организационно-правовая форма, вручную указанная клиентом (не справочник) -->
+			<xsd:element name="wrk_opf_def" type="wsct:WSTypeChar9" minOccurs="0"/>
+			<!-- ИНН компании - работодателя клиента -->
+			<xsd:element name="wrk_inn" type="tns:WrkInn" minOccurs="0"/>
+			<!-- Телефон бухгалтерии/отдела кадров -->
+			<xsd:element name="wrk_acc_ph" type="tns:TypePhone" minOccurs="0"/>
+			<!-- Наличие контактного лица в компании - работодателе -->
+			<xsd:element name="wrk_cont" type="xsd:boolean" minOccurs="0"/>
+			<!-- Рабочая почта клиента -->
+			<xsd:element name="wrk_email" type="tns:TypeEmail" minOccurs="0"/>
+			<!-- Сумма доходов -->
+			<xsd:element name="inc_ama" type="tns:TypeDecimal192" minOccurs="0"/>
+			<!-- Сумма дополнительных доходов -->
+			<xsd:element name="inc_add_ama" type="tns:TypeDecimal192" minOccurs="0"/>
+			<!-- Описание источника доп.доходов -->
+			<xsd:element name="inc_add_desc" type="tns:IncAddDescTyp" minOccurs="0"/>
+			<!-- Сумма расходов -->
+			<xsd:element name="exp_ama" type="tns:TypeDecimal192" minOccurs="0"/>
+			<!-- Сумма рассчитанных по EQ доходов -->
+			<xsd:element name="inc_eq_ama" type="tns:TypeDecimal192" minOccurs="0"/>
+			<!-- Сумма пенсии -->
+			<xsd:element name="pens_ama" type="tns:TypeDecimal192" minOccurs="0"/>
+			<!-- Расходы на аренду квартиры -->
+			<xsd:element name="exp_rent_ama" type="tns:TypeDecimal192" minOccurs="0"/>
+			<!-- Номер мобильного телефона -->
+			<xsd:element name="cust_mob_ph" type="tns:TypePhone" minOccurs="0"/>
+			<!-- Личная почта клиента -->
+			<xsd:element name="cust_email" type="tns:TypeEmail" minOccurs="0"/>
+			<!-- Оператор мобильной связи -->
+			<xsd:element name="mob_operator" type="wsct:WSTypeChar35" minOccurs="0"/>
+			<!-- Удобное время для связи с -->
+			<xsd:element name="cont_time_from" type="tns:TypeTime4" minOccurs="0"/>
+			<!-- Удобное время для связи до -->
+			<xsd:element name="cont_time_to" type="tns:TypeTime4" minOccurs="0"/>
+			<!-- Тип контракта мобильного телефона -->
+			<xsd:element name="mob_contract_typ" type="tns:MobContractTyp" minOccurs="0"/>
+			<!-- Телефон контактного лица -->
+			<xsd:element name="cont_ph" type="tns:TypePhone" minOccurs="0"/>
+			<!-- Имя контактного лица -->
+			<xsd:element name="cont_name" type="tns:TypeName35" minOccurs="0"/>
+			<!-- Фамилия контактного лица -->
+			<xsd:element name="cont_surname" type="tns:TypeName35" minOccurs="0"/>
+			<!-- Отчество контактного лица -->
+			<xsd:element name="cont_patronymic" type="tns:TypeName35" minOccurs="0"/>
+			<!-- Отношение к заёмщику -->
+			<xsd:element name="cont_rel" type="tns:ContRel" minOccurs="0"/>
+			<!-- Признак наличия недвижимости -->
+			<xsd:element name="rlt_flg" type="xsd:boolean" minOccurs="0"/>
+			<!-- Тип недвижимости -->
+			<xsd:element name="rlt_typ" type="tns:RltTyp" minOccurs="0"/>
+			<!-- Вид собственности -->
+			<xsd:element name="rlt_own_kind" type="tns:RltOwnKind" minOccurs="0"/>
+			<!-- Срок владения недвижимостью -->
+			<xsd:element name="rlt_tenure_term" type="tns:RltTenureTerm" minOccurs="0"/>
+			<!-- Способ приобретения недвижимости -->
+			<xsd:element name="rlt_prch" type="tns:RltPrch" minOccurs="0"/>
+			<!-- Кредиты в других банках -->
+			<xsd:element name="obl_typ" type="wsct:WSTypeChar3" minOccurs="0"/>
+			<xsd:element name="obl_ama" type="tns:TypeDecimal192" minOccurs="0"/>
+			<xsd:element name="obl_mpay_ama" type="tns:TypeDecimal192" minOccurs="0"/>
+			<xsd:element name="obl_bank" type="wsct:WSTypeChar40" minOccurs="0"/>
+			<!-- Признак наличия карт в других банках -->
+			<xsd:element name="obc_flg" type="xsd:boolean" minOccurs="0"/>
+			<!-- Признак наличия кредитов в других банках -->
+			<xsd:element name="obl_flg" type="xsd:boolean" minOccurs="0"/>
+			<!-- Наличие счетов в других банках  -->
+			<xsd:element name="ob_acc" type="xsd:boolean" minOccurs="0"/>
+			<!-- Наличие депозитов в других банках  -->
+			<xsd:element name="ob_dep" type="xsd:boolean" minOccurs="0"/>
+			<!-- Количество активных кредитов -->
+			<xsd:element name="obl_cnt" type="tns:Int99" minOccurs="0"/>
+			<!-- Суммарный платёж по кредитам (кроме КК и овердрафтов) -->
+			<xsd:element name="obl_spay_ama" type="tns:TypeDecimal192" minOccurs="0"/>
+			<!-- Количество открытых кредитных карт -->
+			<xsd:element name="obc_ccnt" type="tns:Int99" minOccurs="0"/>
+			<!-- Суммарный лимит по всем кредитным картам -->
+			<xsd:element name="obc_slim" type="tns:TypeDecimal192" minOccurs="0"/>
+			<!-- Количество открытых дебетовых карт -->
+			<xsd:element name="obc_dcnt" type="tns:Int99" minOccurs="0"/>
+			<!-- Тип карты другого банка -->
+			<xsd:element name="obc_typ" type="wsct:WSTypeChar5" minOccurs="0"/>
+			<!-- Система и класс карты -->
+			<xsd:element name="obc_sys" type="wsct:WSTypeChar35" minOccurs="0"/>
+			<!-- Кредитный лимит карты -->
+			<xsd:element name="obc_lim" type="tns:TypeDecimal192" minOccurs="0"/>
+			<!-- Срок использования карты -->
+			<xsd:element name="obc_term" type="tns:ObcTerm" minOccurs="0"/>
+			<!-- Банк - эмитент карты -->
+			<xsd:element name="obc_bank" type="wsct:WSTypeChar40" minOccurs="0"/>
+			<!-- Сумма первоначального взноса -->
+			<xsd:element name="down_pay" type="wsct:WSTypeDecimal152" minOccurs="0"/>
+			<!-- Код торговой точки получения кредита/товара -->
+			<xsd:element name="cred_pos" type="wsct:WSTypeChar40" minOccurs="0"/>
+			<!-- Способ получения товара/Подписания документов -->
+			<xsd:element name="delivery_typ" type="wsct:WSTypeChar35" minOccurs="0"/>
+			<!-- ИНН Партнера -->
+			<xsd:element name="partner_inn" type="wsct:WSTypeChar12" minOccurs="0"/>
+			<!--первый кредит?-->
+			<xsd:element name="isFirstCredit" type="xsd:boolean" minOccurs="0"/>
+			<!--Тип предыдущего кредита?-->
+			<xsd:element name="previosCreditType" type="xsd:string" minOccurs="0"/>
+			<!-- Адрес точки подписания документов -->
+			<xsd:element name="document_site_address" type="wsct:WSTypeChar150" minOccurs="0"/>
+			<!-- Тип доставки: 0 — PPD, 1 — Курьер -->
+			<xsd:element name="delivery_ppd_courier" type="wsct:WSTypeChar1" minOccurs="0"/>
+			<!-- срок страхования -->
+			<xsd:element name="insurance_term" type="wsct:WSTypeDecimal30" minOccurs="0"/>
+			<!-- Идентификатор согласия -->
+			<xsd:element name="consentid" type="wsct:WSTypeDecimal190" minOccurs="0"/>
+			<!--Признак доставки-->
+			<xsd:element name="shippingType" type="tns:ShippingType" minOccurs="0"/>
+			<!-- Спецификация товара-->
+			<xsd:element name="specificationList" type="tns:WSConsumerPartnerApplicationAddSpecificationList"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Input parameters -->
+	<xsd:complexType name="WSConsumerPartnerApplicationAddInParms">
+		<xsd:sequence>
+			<xsd:element name="reference" type="wsct:WSTypeChar20" minOccurs="0"/>
+			<!-- kod zakaza vo vneshnej sisteme (v sisteme partnera banka) -->
+			<xsd:element name="currency" type="wsct:WSTypeChar3" minOccurs="0"/>
+			<!-- kod valjuty zakaza -->
+			<xsd:element name="tradePoint" type="wsct:WSTypeChar10" minOccurs="0"/>
+			<!-- kod torgovoj tochki -->
+			<xsd:element name="tradeSite" type="wsct:WSTypeChar10" minOccurs="0"/>
+			<!-- kod torgovoj ploshhadki -->
+			<xsd:element name="lastName" type="wsct:WSTypeChar35" minOccurs="0"/>
+			<!-- familija zakazchika -->
+			<xsd:element name="firstName" type="wsct:WSTypeChar35" minOccurs="0"/>
+			<!-- imja zakazchika -->
+			<xsd:element name="middleName" type="wsct:WSTypeChar35" minOccurs="0"/>
+			<!-- otchestvo zakazchika -->
+			<xsd:element name="orderType" type="wsct:WSTypeChar2" minOccurs="0"/>
+			<!-- tip zakaza -->
+			<xsd:element name="tradePointPhone" type="wsct:WSTypeChar18" minOccurs="0"/>
+			<!-- telefon dlja svjazi s torgovoj tochkoj -->
+			<xsd:element name="phone" type="wsct:WSTypeChar18" minOccurs="0"/>
+			<!-- telefon dlja svjazi s klientom -->
+			<xsd:element name="email" type="wsct:WSTypeChar70" minOccurs="0"/>
+			<!-- Email -->
+			<xsd:element name="channel" type="wsct:WSTypeChar2" minOccurs="0"/>
+			<!-- kanal postuplenija zakaza -->
+			<xsd:element name="docType" type="wsct:WSTypeChar3" minOccurs="0"/>
+			<!-- tip dokumenta; udostoverjajushhego lichnost -->
+			<xsd:element name="docSerial" type="wsct:WSTypeChar10" minOccurs="0"/>
+			<!-- serija dul -->
+			<xsd:element name="docNumber" type="wsct:WSTypeChar35" minOccurs="0"/>
+			<!-- nomer dul -->
+			<xsd:element name="cust_brthdt" type="xsd:date" minOccurs="0"/>
+			<!-- Дата рождения -->
+			<xsd:element name="cust_genger" type="tns:TypeGenger" minOccurs="0"/>
+			<!-- Пол клиента -->
+			<xsd:element name="cust_prev_name" type="tns:TypeName35" minOccurs="0"/>
+			<!-- Предыдущее имя -->
+			<xsd:element name="cust_prev_surname" type="tns:TypeName35" minOccurs="0"/>
+			<!-- Предыдущая фамилия -->
+			<xsd:element name="cust_prev_patronymic" type="tns:TypeName35" minOccurs="0"/>
+			<!-- Предыдущее отчество -->
+			<xsd:element name="cred_typ" type="tns:CredTyp" minOccurs="0"/>
+			<!-- Тип кредита  -->
+			<xsd:element name="prod_code" type="wsct:WSTypeChar10" minOccurs="0"/>
+			<!-- Код продукта  -->
+			<xsd:element name="cred_ama" type="tns:TypeDecimal192" minOccurs="0"/>
+			<!-- Сумма кредита  -->
+			<xsd:element name="cred_term" type="xsd:int" minOccurs="0"/>
+			<!-- Срок кредита  -->
+			<xsd:element name="cred_purpose" type="wsct:WSTypeChar35" minOccurs="0"/>
+			<!-- Цель кредита  -->
+			<xsd:element name="cred_cur" type="tns:CredCur" minOccurs="0"/>
+			<!-- Валюта кредита  -->
+			<xsd:element name="down_pay" type="wsct:WSTypeDecimal152" minOccurs="0"/>
+			<!-- Сумма первоначального взноса -->
+			<xsd:element name="cred_pos" type="wsct:WSTypeChar40" minOccurs="0"/>
+			<!-- Код торговой точки получения кредита/товара -->
+			<xsd:element name="delivery_typ" type="wsct:WSTypeChar35" minOccurs="0"/>
+			<!-- Способ получения товара/Подписания документов -->
+			<xsd:element name="delivery_address" type="tns:Address" minOccurs="0"/>
+			<!-- Адрес доставки -->
+			<xsd:element name="agent_code" type="wsct:WSTypeChar35" minOccurs="0"/>
+			<!-- Технический код агента продаж -->
+			<xsd:element name="extsys" type="wsct:WSTypeChar40" minOccurs="0"/>
+			<!-- Код источника заявки -->
+			<xsd:element name="partner_inn" type="wsct:WSTypeChar12" minOccurs="0"/>
+			<!-- ИНН Партнера -->
+			<xsd:element name="shop_id" type="wsct:WSTypeChar10" minOccurs="0"/>
+			<!-- Идентификатор магазина -->
+			<xsd:element name="cred_brnm" type="wsct:WSTypeChar4" minOccurs="0"/>
+			<!--тип предыдущего кредита-->
+			<xsd:element name="specificationList" type="tns:WSConsumerPartnerApplicationAddSpecificationList"/>
+			<!-- Specifikatsiya tovara -->
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="WSConsumerPartnerApplicationAddSpecificationList">
+		<xsd:sequence>
+			<xsd:element name="specificationListRow" type="tns:WSConsumerPartnerApplicationAddSpecificationListRow" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="WSConsumerPartnerApplicationAddSpecificationListRow">
+		<xsd:sequence>
+			<xsd:element name="category" type="wsct:WSTypeChar50" minOccurs="0"/>
+			<!-- Категория товара -->
+			<xsd:element name="code" type="wsct:WSTypeChar50" minOccurs="0"/>
+			<!-- kod tovara -->
+			<xsd:element name="description" type="wsct:WSTypeChar200" minOccurs="0"/>
+			<!-- naimenovanie tovara -->
+			<xsd:element name="amount" type="wsct:WSTypeDecimal152" minOccurs="0"/>
+			<!-- stoimost edinitsy tovara -->
+			<xsd:element name="cashSum" type="wsct:WSTypeDecimal152" minOccurs="0"/>
+			<!-- Оплата наличными -->
+			<xsd:element name="quantity" type="wsct:WSTypeDecimal30" minOccurs="0"/>
+			<!-- kolichestvo edinits tovara -->
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Docum">
+		<xsd:sequence>
+			<xsd:element name="doc" minOccurs="0" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="doc_typ" type="tns:DocType"/>
+						<xsd:element name="doc_num" type="wsct:WSTypeChar35" minOccurs="0"/>
+						<xsd:element name="doc_isdt" type="xsd:date" minOccurs="0"/>
+						<xsd:element name="doc_bio_flg" type="xsd:boolean" minOccurs="0"/>
+						<xsd:element name="abroad_lstdt" type="xsd:date" minOccurs="0"/>
+						<xsd:element name="doc_stdt" type="xsd:date" minOccurs="0"/>
+						<xsd:element name="doc_fndt" type="xsd:date" minOccurs="0"/>
+						<xsd:element name="doc_accd" type="xsd:date" minOccurs="0"/>
+						<xsd:element name="grp_typ" type="tns:GrpTyp" minOccurs="0"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Beneficiary">
+		<xsd:sequence>
+			<!-- Фамилия -->
+			<xsd:element name="cust_surname" type="wsct:WSTypeChar35" minOccurs="0" maxOccurs="1"/>
+			<!-- Имя -->
+			<xsd:element name="cust_name" type="wsct:WSTypeChar35" minOccurs="0" maxOccurs="1"/>
+			<!-- Отчество -->
+			<xsd:element name="cust_patronymic" type="wsct:WSTypeChar35" minOccurs="0" maxOccurs="1"/>
+			<!-- Дата рождения  -->
+			<xsd:element name="cust_brthdt" type="wsct:WSTypeDate" minOccurs="0" maxOccurs="1"/>
+			<!-- Серия и номер паспорта клиента -->
+			<xsd:element name="pass_num" type="wsct:WSTypeChar10" minOccurs="0" maxOccurs="1"/>
+			<!-- Кем выдан паспорт -->
+			<xsd:element name="pass_auth_num" type="wsct:WSTypeChar70" minOccurs="0" maxOccurs="1"/>
+			<!-- Дата выдачи паспорта -->
+			<xsd:element name="pass_isdt" type="wsct:WSTypeDate" minOccurs="0" maxOccurs="1"/>
+			<!-- Подразделение выдачи паспорта -->
+			<xsd:element name="pass_subdivision_code" type="wsct:WSTypeChar7" minOccurs="0" maxOccurs="1"/>
+			<!-- Тип выгодоприобретателя -->
+			<xsd:element name="beneficiary_type" type="wsct:WSTypeChar1" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="DocType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="001"/>
+			<xsd:enumeration value="002"/>
+			<xsd:enumeration value="DMS"/>
+			<xsd:enumeration value="DRL"/>
+			<xsd:enumeration value="EPA"/>
+			<xsd:enumeration value="INN"/>
+			<xsd:enumeration value="NFL"/>
+			<xsd:enumeration value="PFI"/>
+			<xsd:enumeration value="RMI"/>
+			<xsd:enumeration value="TSR"/>
+			<xsd:enumeration value="WBK"/>
+			<xsd:enumeration value="FBK"/>
+			<xsd:enumeration value="PFC"/>
+			<xsd:enumeration value="HSC"/>
+			<xsd:enumeration value="MID"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="GrpTyp">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="O"/>
+			<xsd:enumeration value="I"/>
+			<xsd:enumeration value="S"/>
+			<xsd:enumeration value="D"/>
+			<xsd:enumeration value="A"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TypeChar90">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="90"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TypeChar555">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="555"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TypeDecimal192">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:totalDigits value="19"/>
+			<xsd:fractionDigits value="2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="SmsCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="\w{5}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TypeName35">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="35"/>
+			<xsd:pattern value="[а-яА-ЯёЁ\-]*"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TypeGenger">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="F"/>
+			<xsd:enumeration value="M"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PassNum">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[\d]{10}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PassAuthName">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[а-яА-ЯёЁ\d#№\\/\-., ]{1,70}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TypePassSubdivisionCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{6}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PassPrevSer">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[IVXLC]{1,7}-[А-ЯЁ]{2}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PassPrevNum">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="\d{6}(\d{4})?"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TypeMarStCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="W"/>
+			<xsd:enumeration value="T"/>
+			<xsd:enumeration value="M"/>
+			<xsd:enumeration value="V"/>
+			<xsd:enumeration value="D"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ChildQuant">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="00"/>
+			<xsd:enumeration value="01"/>
+			<xsd:enumeration value="02"/>
+			<xsd:enumeration value="03"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Int99">
+		<xsd:restriction base="xsd:int">
+			<xsd:pattern value="\d{1,2}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Codewrd">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[a-zA-Zа-яёА-ЯЁ\d]*"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TsOwnKind">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Y"/>
+			<xsd:enumeration value="N"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TsCatCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="A"/>
+			<xsd:enumeration value="B"/>
+			<xsd:enumeration value="C"/>
+			<xsd:enumeration value="D"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="CredTyp">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ILSF"/>
+			<xsd:enumeration value="PILB"/>
+			<xsd:enumeration value="CCBI"/>
+			<xsd:enumeration value="LLQ1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="CredCur">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="RUR"/>
+			<xsd:enumeration value="EUR"/>
+			<xsd:enumeration value="USD"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="MonthDay">
+		<xsd:restriction base="xsd:int">
+			<xsd:minInclusive value="1"/>
+			<xsd:maxInclusive value="31"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="IncAprMethod">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="2NDFL"/>
+			<xsd:enumeration value="EMAIL"/>
+			<xsd:enumeration value="EQ"/>
+			<xsd:enumeration value="NEGATIVE"/>
+			<xsd:enumeration value="NOT_CONF"/>
+			<xsd:enumeration value="BANK_FORM"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WrkEmpTyp">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="E"/>
+			<xsd:enumeration value="P"/>
+			<xsd:enumeration value="S"/>
+			<xsd:enumeration value="R"/>
+			<xsd:enumeration value="G"/>
+			<xsd:enumeration value="U"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WrkEmpQuant">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="LE4"/>
+			<xsd:enumeration value="LE15"/>
+			<xsd:enumeration value="LE50"/>
+			<xsd:enumeration value="LE100"/>
+			<xsd:enumeration value="LE500"/>
+			<xsd:enumeration value="GT500"/>
+			<xsd:enumeration value="UNK"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WrkCompTyp">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="PRIVATE"/>
+			<xsd:enumeration value="INTER"/>
+			<xsd:enumeration value="STATE"/>
+			<xsd:enumeration value="IP"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WrkPosTyp">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="BSNM"/>
+			<xsd:enumeration value="TOPM"/>
+			<xsd:enumeration value="MNGR"/>
+			<xsd:enumeration value="SPCL"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WrkTerm">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="LT1"/>
+			<xsd:enumeration value="LT2"/>
+			<xsd:enumeration value="LT5"/>
+			<xsd:enumeration value="GT5"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WrkInn">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="\d{10}(\d{2})?"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TypePhone">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="7([0-9]){10}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TypeEmail">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9_\.\-]+\.[a-zA-Z]{2,4}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ContRel">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="SON"/>
+			<xsd:enumeration value="DAUGHTER"/>
+			<xsd:enumeration value="OTHER"/>
+			<xsd:enumeration value="FATHER"/>
+			<xsd:enumeration value="SISTER"/>
+			<xsd:enumeration value="BROTHER"/>
+			<xsd:enumeration value="MOTHER"/>
+			<xsd:enumeration value="RELATIVE"/>
+			<xsd:enumeration value="FRIEND"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="RltTyp">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="H"/>
+			<xsd:enumeration value="F"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="RltOwnKind">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="JO"/>
+			<xsd:enumeration value="SO"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="RltTenureTerm">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="LESS_THAN_YEAR"/>
+			<xsd:enumeration value="BETWEEN_1_2"/>
+			<xsd:enumeration value="BETWEEN_2_5"/>
+			<xsd:enumeration value="MORE_THAN_5"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="RltPrch">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="PRIVATIZATION"/>
+			<xsd:enumeration value="EXCHANGE"/>
+			<xsd:enumeration value="GIFT"/>
+			<xsd:enumeration value="PURCHASE"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AddrTyp">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="J"/>
+			<xsd:enumeration value="F"/>
+			<xsd:enumeration value="C"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AddrCounry">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="RU"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AddrIndex">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{6}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AddrRegCod">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9][2-9]"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AddrDistrTyp">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="010"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AddrHouseKind">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="JO"/>
+			<xsd:enumeration value="OTHER"/>
+			<xsd:enumeration value="RENT"/>
+			<xsd:enumeration value="NPRIVAT"/>
+			<xsd:enumeration value="SO"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ObcTyp">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="DEBIT"/>
+			<xsd:enumeration value="CREDIT"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ObcTerm">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="LESS_THAN_YEAR"/>
+			<xsd:enumeration value="BETWEEN_1_2"/>
+			<xsd:enumeration value="BETWEEN_2_5"/>
+			<xsd:enumeration value="MORE_THEN_5"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="CustCatCod">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="0[1-5]"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="EduCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="US"/>
+			<xsd:enumeration value="S"/>
+			<xsd:enumeration value="SS"/>
+			<xsd:enumeration value="UH"/>
+			<xsd:enumeration value="H"/>
+			<xsd:enumeration value="HH"/>
+			<xsd:enumeration value="A"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="CorrespondTyp">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="1"/>
+			<xsd:enumeration value="2"/>
+			<xsd:enumeration value="3"/>
+			<xsd:enumeration value="4"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="IncAddDescTyp">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="BONUS"/>
+			<xsd:enumeration value="ALIMONY"/>
+			<xsd:enumeration value="RENT"/>
+			<xsd:enumeration value="OFF_H_JOB"/>
+			<xsd:enumeration value="COACHING"/>
+			<xsd:enumeration value="DIVIDENT"/>
+			<xsd:enumeration value="FARMING"/>
+			<xsd:enumeration value="PRIV_TAXI"/>
+			<xsd:enumeration value="BUILDING"/>
+			<xsd:enumeration value="RELAT_HELP"/>
+			<xsd:enumeration value="TIPS"/>
+			<xsd:enumeration value="OTHER"/>
+			<xsd:enumeration value="PENSION"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TypeCustChngCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ALL"/>
+			<xsd:enumeration value="NAME"/>
+			<xsd:enumeration value="SURNAME"/>
+			<xsd:enumeration value="PATRONYMIC"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TsRegNum">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[А-ЯЁ]\d{3}[А-ЯЁ]{2}\d{2,3}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TsTenureTerm">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="LESS_1_YEAR"/>
+			<xsd:enumeration value="1_YEAR"/>
+			<xsd:enumeration value="2_YEAR"/>
+			<xsd:enumeration value="3_YEAR"/>
+			<xsd:enumeration value="4_YEAR"/>
+			<xsd:enumeration value="5_YEAR"/>
+			<xsd:enumeration value="MORE_5_YEAR"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WrkOpf">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="IP"/>
+			<xsd:enumeration value="OOO"/>
+			<xsd:enumeration value="ZAO"/>
+			<xsd:enumeration value="OAO"/>
+			<xsd:enumeration value="FGUP"/>
+			<xsd:enumeration value="MUP"/>
+			<xsd:enumeration value="GUP"/>
+			<xsd:enumeration value="DTN"/>
+			<xsd:enumeration value="OTHER"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TypeTime4">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-2][0-9][0-5][0-9]"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="MobContractTyp">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="PREPAID"/>
+			<xsd:enumeration value="POSTPAID"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="Address">
+		<xsd:sequence>
+			<xsd:element name="addr_typ" type="tns:AddrTyp"/>
+			<xsd:element name="addr_counry" type="tns:AddrCounry" minOccurs="0"/>
+			<xsd:element name="addr_index" type="tns:AddrIndex" minOccurs="0"/>
+			<xsd:element name="addr_reg_typ" type="wsct:WSTypeChar40" minOccurs="0"/>
+			<xsd:element name="addr_reg_code" type="tns:AddrRegCod" minOccurs="0"/>
+			<xsd:element name="addr_distr_typ" type="tns:AddrDistrTyp" minOccurs="0"/>
+			<xsd:element name="addr_distr" type="wsct:WSTypeChar35" minOccurs="0"/>
+			<xsd:element name="addr_cty" type="wsct:WSTypeChar35" minOccurs="0"/>
+			<xsd:element name="addr_settl_typ" type="wsct:WSTypeChar40" minOccurs="0"/>
+			<xsd:element name="addr_settl_nm" type="wsct:WSTypeChar35" minOccurs="0"/>
+			<xsd:element name="addr_str_typ" type="wsct:WSTypeChar40" minOccurs="0"/>
+			<xsd:element name="addr_str_nm" type="wsct:WSTypeChar35" minOccurs="0"/>
+			<xsd:element name="addr_house" type="wsct:WSTypeChar6" minOccurs="0"/>
+			<xsd:element name="addr_bld" type="wsct:WSTypeChar5" minOccurs="0"/>
+			<xsd:element name="addr_aprt" type="wsct:WSTypeChar5" minOccurs="0"/>
+			<xsd:element name="addr_dof" type="xsd:date" minOccurs="0"/>
+			<xsd:element name="addr_phn" type="wsct:WSTypeChar20" minOccurs="0"/>
+			<xsd:element name="addr_res_eq_reg" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="addr_house_kind" type="tns:AddrHouseKind" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="AddProd">
+		<xsd:sequence>
+			<xsd:element name="addpr_ref_code" type="wsct:WSTypeChar50"/>
+			<xsd:element name="addpr_list_params" type="tns:ProdParamList" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ProdParamList">
+		<xsd:sequence>
+			<xsd:element name="addpr_param" type="tns:ProdParam" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ProdParam">
+		<xsd:sequence>
+			<xsd:element name="param_name" type="wsct:WSTypeChar50"/>
+			<xsd:element name="param_value" type="wsct:WSTypeChar50"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="ShippingType">
+		<xsd:annotation>
+			<xsd:documentation>Информация о доставке</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="COURIER">
+				<xsd:annotation>
+					<xsd:documentation>Курьерская доставка</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="OFFICE">
+				<xsd:annotation>
+					<xsd:documentation>Отделение банка</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>
